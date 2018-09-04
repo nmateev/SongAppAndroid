@@ -1,5 +1,7 @@
 package com.wasp.songappspring.models;
 
+import com.wasp.songappspring.utils.IdGenerator;
+
 public class Song {
     //fields
     public int id;
@@ -10,12 +12,20 @@ public class Song {
 
 
     //constructor
-    public Song(int id, String songTitle, String authorName, String songDuration, int playsCount) {
-        this.id = id;
+
+    public Song(){
+
+    }
+    public Song(String songTitle, String authorName, String songDuration, int playsCount) {
         this.songTitle = songTitle;
         this.authorName = authorName;
         this.songDuration = songDuration;
         this.playsCount = playsCount;
+    }
+
+    public Song(int id,String songTitle, String authorName, String songDuration, int playsCount){
+        this(songTitle,authorName,songDuration,playsCount);
+        this.setId(id);
     }
 
     //getters and setters
