@@ -3,6 +3,7 @@ package com.wasp.songappspring.controllers;
 import com.wasp.songappspring.controllers.base.SongsControllerBase;
 import com.wasp.songappspring.models.Song;
 import com.wasp.songappspring.services.SongsServiceBase;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -12,6 +13,11 @@ import java.util.List;
 public class SongsControllerImpl implements SongsControllerBase {
 
     private SongsServiceBase songsService;
+
+    @Autowired
+    public SongsControllerImpl(SongsServiceBase songsService) {
+        setSongsService(songsService);
+    }
 
     @RequestMapping(value = "/songs/new", method = RequestMethod.POST)
     @Override
@@ -41,5 +47,9 @@ public class SongsControllerImpl implements SongsControllerBase {
     @Override
     public List<Song> getSongs() {
         return songsService.getSongs();
+    }
+
+    public void setSongsService(SongsServiceBase songsService) {
+        this.songsService = songsService;
     }
 }
