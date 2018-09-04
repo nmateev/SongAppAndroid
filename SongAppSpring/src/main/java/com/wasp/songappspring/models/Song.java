@@ -9,6 +9,7 @@ public class Song {
     public String authorName;
     public String songDuration;
     public int playsCount;
+    public String imageUrl;
 
 
     //constructor
@@ -16,15 +17,16 @@ public class Song {
     public Song(){
 
     }
-    public Song(String songTitle, String authorName, String songDuration, int playsCount) {
+    public Song(String songTitle, String authorName, String songDuration, int playsCount,String imageUrl) {
         this.songTitle = songTitle;
         this.authorName = authorName;
         this.songDuration = songDuration;
         this.playsCount = playsCount;
+        this.imageUrl=imageUrl;
     }
 
-    public Song(int id,String songTitle, String authorName, String songDuration, int playsCount){
-        this(songTitle,authorName,songDuration,playsCount);
+    public Song(int id,String songTitle, String authorName, String songDuration, int playsCount,String imageUrl){
+        this(songTitle,authorName,songDuration,playsCount,imageUrl);
         this.setId(id);
     }
 

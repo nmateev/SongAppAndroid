@@ -19,8 +19,8 @@ public class InMemoryRepository implements SongsRepository {
     public InMemoryRepository(){
         idGenerator=new IdGenerator();
         songsList= new ArrayList<>();
-        songsList.add(new Song(idGenerator.getNextId(),"Detelini","Lili Ivanova","3.30",0));
-        songsList.add(new Song(idGenerator.getNextId(),"Edin nerazdelen klas","Tonika","3.54",0));
+        songsList.add(new Song(idGenerator.getNextId(),"Detelini","Lili Ivanova","3.30",0,""));
+        songsList.add(new Song(idGenerator.getNextId(),"Edin nerazdelen klas","Tonika","3.54",0,""));
     }
 
 
