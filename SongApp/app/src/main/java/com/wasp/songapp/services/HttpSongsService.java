@@ -39,16 +39,16 @@ public class HttpSongsService implements SongsService {
     }
 
     @Override
-    public List<Song> getFilteredSongs(String pattern) throws IOException {
+    public List<Song> getFilteredSongs(String searchPattern) throws IOException {
 
-        String patternToLower = pattern.toLowerCase();
+        String searchPatternLowerCase = searchPattern.toLowerCase();
 
         return getAllSongs()
                 .stream()
                 .filter(song -> song
                         .getAuthorName()
                         .toLowerCase()
-                        .contains(patternToLower))
+                        .contains(searchPatternLowerCase))
                 .collect(Collectors.toList());
     }
 }

@@ -6,10 +6,11 @@ import com.wasp.songappspring.services.SongsServiceBase;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
-@RequestMapping(value = "/api")
+@RequestMapping(value = "/api/songs")
 public class SongsControllerImpl implements SongsControllerBase {
 
     private SongsServiceBase songsService;
@@ -19,37 +20,37 @@ public class SongsControllerImpl implements SongsControllerBase {
         setSongsService(songsService);
     }
 
-    @RequestMapping(value = "/songs/new", method = RequestMethod.POST)
+    @RequestMapping(value = "/new", method = RequestMethod.POST)
     @Override
-    public void addSong(@RequestBody Song newSong) {
+    public void addSong(@RequestBody @Valid Song newSong) {
         songsService.addSong(newSong);
     }
 
-    @RequestMapping(value = "/songs/delete/{id}", method = RequestMethod.DELETE)
+    @RequestMapping(value = "/delete/{id}", method = RequestMethod.DELETE)
     @Override
-    public void deleteSong(@PathVariable("id") int id) {
+    public void deleteSong(@PathVariable(value = "id") @Valid int id) {
         songsService.deleteSong(id);
     }
 
-    @RequestMapping(value = "/songs/update/{id}", method = RequestMethod.PUT)
+    @RequestMapping(value = "/update/{id}", method = RequestMethod.PUT)
     @Override
-    public void updateSongPlayCounter(@PathVariable("id") int id) {
+    public void updateSongPlayCounter(@PathVariable(value = "id") @Valid int id) {
         songsService.updateSongPlayCounter(id);
     }
 
-    @RequestMapping(value = "/songs/{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     @Override
-    public Song getSongById(@PathVariable("id") int id) {
+    public Song getSongById(@PathVariable(value = "id") @Valid int id) {
         return songsService.getSongById(id);
     }
 
-    @RequestMapping(value = "/songs", method = RequestMethod.GET)
+    @RequestMapping(value = "/get", method = RequestMethod.GET)
     @Override
     public List<Song> getSongs() {
         return songsService.getSongs();
     }
 
-    public void setSongsService(SongsServiceBase songsService) {
+    private void setSongsService(SongsServiceBase songsService) {
         this.songsService = songsService;
     }
 }
