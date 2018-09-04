@@ -1,5 +1,7 @@
 package com.wasp.songappspring.services;
 
+import com.wasp.songappspring.models.Song;
+import com.wasp.songappspring.repositories.SongsRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

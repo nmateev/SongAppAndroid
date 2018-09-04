@@ -1,6 +1,7 @@
 package com.wasp.songappspring.controllers;
 
 import com.wasp.songappspring.controllers.base.SongsControllerBase;
+import com.wasp.songappspring.models.Song;
 import com.wasp.songappspring.services.SongsServiceBase;
 import org.springframework.web.bind.annotation.*;
 
