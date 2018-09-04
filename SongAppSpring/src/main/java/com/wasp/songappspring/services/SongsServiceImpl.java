@@ -1,5 +1,8 @@
 package com.wasp.songappspring.services;
 
+import com.wasp.songappspring.models.Song;
+import com.wasp.songappspring.repositories.SongsRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -8,6 +11,7 @@ import java.util.List;
 public class SongsServiceImpl implements SongsServiceBase {
     private SongsRepository songsRepository;
 
+    @Autowired
     public SongsServiceImpl(SongsRepository songsRepository) {
         setSongsRepository(songsRepository);
     }
