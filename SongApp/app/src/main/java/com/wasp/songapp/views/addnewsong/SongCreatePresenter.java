@@ -16,10 +16,8 @@ public class SongCreatePresenter implements SongCreateContracts.Presenter {
     private SongCreateContracts.View mView;
 
     @Inject
-    public SongCreatePresenter(
-            SongsService superheroesService,
-            SchedulerProvider schedulerProvider) {
-        mSongsService = superheroesService;
+    public SongCreatePresenter(SongsService songsService, SchedulerProvider schedulerProvider) {
+        mSongsService = songsService;
         mSchedulerProvider = schedulerProvider;
     }
 

@@ -25,7 +25,7 @@ public interface SongCreateContracts {
         void save(Song song);
     }
 
-    public interface Navigator {
+    interface Navigator {
 
         void navigateToHome();
     }

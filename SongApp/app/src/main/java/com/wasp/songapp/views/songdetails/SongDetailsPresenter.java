@@ -19,11 +19,8 @@ public class SongDetailsPresenter implements SongDetailsContracts.Presenter {
 
     //constructor
     @Inject
-    public SongDetailsPresenter(
-            SongsService superheroesService,
-            SchedulerProvider schedulerProvider
-    ) {
-        mSongsService = superheroesService;
+    public SongDetailsPresenter(SongsService songsService, SchedulerProvider schedulerProvider) {
+        mSongsService = songsService;
         mSchedulerProvider = schedulerProvider;
     }
 
@@ -38,20 +35,19 @@ public class SongDetailsPresenter implements SongDetailsContracts.Presenter {
         mView.showLoading();
         Disposable observable = Observable
                 .create((ObservableOnSubscribe<Song>) emitter -> {
-                    Song song= mSongsService.getSongById(mSongId);
+                    Song song = mSongsService.getSongById(mSongId);
                     emitter.onNext(song);
                     emitter.onComplete();
                 })
                 .subscribeOn(mSchedulerProvider.backgroundThread())
                 .observeOn(mSchedulerProvider.uiThread())
-                .doOnError(mView::showError)
-                .subscribe(mView::showSong);
+                .doFinally(mView::hideLoading)
+                .subscribe(mView::showSong, mView::showError);
     }
 
     @Override
     public void setSongId(int songId) {
         mSongId = songId;
     }
-
 
 }

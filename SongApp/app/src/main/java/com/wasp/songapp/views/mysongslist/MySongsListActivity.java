@@ -15,7 +15,7 @@ import butterknife.ButterKnife;
 
 public class MySongsListActivity extends BaseDrawerActivity implements MySongsListContracts.Navigator {
 
-    public static final int DRAWER_IDENTIFIER = 1;
+    public static final int DRAWER_IDENTIFIER = 314;
     @Inject
     MySongsListFragment mMySongsListFragment;
 

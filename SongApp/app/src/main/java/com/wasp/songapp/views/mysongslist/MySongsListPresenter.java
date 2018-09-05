@@ -51,10 +51,7 @@ public class MySongsListPresenter implements MySongsListContracts.Presenter {
                 .subscribeOn(mSchedulerProvider.backgroundThread())
                 .observeOn(mSchedulerProvider.uiThread())
                 .doFinally(mView::hideProgressBarLoading)
-                .subscribe(
-                        this::presentSongsToView,
-                        error -> mView.showError(error)
-                );
+                .subscribe(this::presentSongsToView, mView::showError);
     }
 
     @Override
