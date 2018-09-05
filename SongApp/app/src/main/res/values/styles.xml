@@ -6,6 +6,12 @@
         <item name="colorAccent">@color/colorPrimaryDark</item>
         <item name="android:windowBackground">@color/colorBackground</item>
         <item name="android:colorBackground">@color/colorBackground</item>
+
+        <item name="material_drawer_background">@color/colorPrimary</item>
+        <item name="material_drawer_divider">@color/colorBackground</item>
+        <item name="material_drawer_primary_text">@color/whiteText</item>
+        <item name="material_drawer_secondary_text">@color/whiteText</item>
+
     </style>
 
 </resources>

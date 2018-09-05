@@ -18,6 +18,9 @@ import dagger.android.support.DaggerAppCompatActivity;
 
 public abstract class BaseDrawerActivity extends DaggerAppCompatActivity {
 
+    private static final String MY_SONGS_DRAWER_NAME = "My songs";
+    private static final String ADD_NEW_SONG_DRAWER_NAME = "Add new song";
+
     @BindView(R.id.tb_drawer_toolbar)
     Toolbar mToolbar;
 
@@ -26,22 +29,24 @@ public abstract class BaseDrawerActivity extends DaggerAppCompatActivity {
     }
 
     public void setupDrawer() {
-        PrimaryDrawerItem listSuperheroesItem = new PrimaryDrawerItem()
-                .withIdentifier(0)
-                .withName("Songs");
+        PrimaryDrawerItem mySongsList = new PrimaryDrawerItem()
+                .withIdentifier(MySongsListActivity.DRAWER_IDENTIFIER)
+                .withIcon(android.R.drawable.btn_plus)
+                .withName(MY_SONGS_DRAWER_NAME);
 
-        SecondaryDrawerItem createSuperheroItem = new SecondaryDrawerItem()
+        SecondaryDrawerItem addNewSongItem = new SecondaryDrawerItem()
                 .withIdentifier(0)
                 .withIcon(android.R.drawable.btn_plus)
-                .withName("add Song");
+                .withName(ADD_NEW_SONG_DRAWER_NAME);
 
         Drawer drawer = new DrawerBuilder()
                 .withActivity(this)
-                .withToolbar(mToolbar)
+                .withToolbar(getToolbar())
                 .addDrawerItems(
-                        listSuperheroesItem,
+                        mySongsList,
                         new DividerDrawerItem(),
-                        createSuperheroItem
+                        addNewSongItem,
+                        new DividerDrawerItem()
                 )
                 .withOnDrawerItemClickListener(new Drawer.OnDrawerItemClickListener() {
                     @Override
@@ -75,19 +80,17 @@ public abstract class BaseDrawerActivity extends DaggerAppCompatActivity {
         return null;
     }
 
+    public Toolbar getToolbar() {
+        return mToolbar;
+    }
 
+    protected abstract long getIdentifier();
 
-        public Toolbar getToolbar() {
-            return mToolbar;
-        }
-
-        protected abstract long getIdentifier();
-
-        @Override
-        protected void onStart() {
-            super.onStart();
-            setupDrawer();
-        }
+    @Override
+    protected void onStart() {
+        super.onStart();
+        setupDrawer();
+    }
 }
 
 

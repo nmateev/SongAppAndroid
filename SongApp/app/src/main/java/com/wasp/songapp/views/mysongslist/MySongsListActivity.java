@@ -2,26 +2,20 @@ package com.wasp.songapp.views.mysongslist;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.widget.Toolbar;
 
 import com.wasp.songapp.R;
 import com.wasp.songapp.models.Song;
+import com.wasp.songapp.views.BaseDrawerActivity;
 import com.wasp.songapp.views.songdetails.SongDetailsActivity;
 
 import javax.inject.Inject;
 
-import butterknife.BindView;
 import butterknife.ButterKnife;
-import dagger.android.support.DaggerAppCompatActivity;
 
 
-//extend base drawer activity
+public class MySongsListActivity extends BaseDrawerActivity implements MySongsListContracts.Navigator {
 
-public class MySongsListActivity extends DaggerAppCompatActivity implements MySongsListContracts.Navigator {
-
-    @BindView(R.id.tb_drawer_toolbar)
-    Toolbar mDrawerToolbar;
-
+    public static final int DRAWER_IDENTIFIER = 1;
     @Inject
     MySongsListFragment mMySongsListFragment;
 
@@ -34,6 +28,7 @@ public class MySongsListActivity extends DaggerAppCompatActivity implements MySo
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_songs_list);
         ButterKnife.bind(this);
+        setSupportActionBar(getToolbar());
 
         mMySongsListFragment.setNavigator(this);
         mMySongsListFragment.setPresenter(mySongsListPresenter);
@@ -51,5 +46,10 @@ public class MySongsListActivity extends DaggerAppCompatActivity implements MySo
         Intent intent = new Intent(this, SongDetailsActivity.class);
         intent.putExtra(SongDetailsActivity.SONG_EXTRA_KEY, song);
         startActivity(intent);
+    }
+
+    @Override
+    protected long getIdentifier() {
+        return DRAWER_IDENTIFIER;
     }
 }
