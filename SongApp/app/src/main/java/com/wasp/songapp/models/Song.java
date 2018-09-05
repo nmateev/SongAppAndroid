@@ -4,6 +4,7 @@ public class Song {
 
     private static final int INITIAL_PLAYS_COUNT = 0;
 
+
     public int id;
     public String songTitle;
     public String authorName;
@@ -62,5 +63,13 @@ public class Song {
 
     private void setImageUrl(String imageUrl) {
         this.imageUrl = imageUrl;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 }
