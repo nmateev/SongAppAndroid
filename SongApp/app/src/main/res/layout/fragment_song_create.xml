@@ -3,34 +3,39 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".views.songdetails.SongDetailsFragment">
+    tools:context=".views.addnewsong.SongCreateFragment">
 
+    <!-- TODO: Update blank fragment layout -->
     <TextView
-        android:id="@+id/tv_song_title"
+        android:id="@+id/et_new_song_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/song_image"/>
+        android:layout_below="@+id/new_song_image"/>
     <TextView
-        android:id="@+id/tv_author_name"
+        android:id="@+id/et_new_author_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/tv_song_title"/>
+        android:layout_below="@+id/et_new_song_title"/>
     <TextView
-        android:id="@+id/tv_song_duration"
+        android:id="@+id/et_new_song_duration"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/tv_author_name"/>
+        android:layout_below="@+id/et_new_author_name"/>
     <TextView
-        android:id="@+id/tv_song_plays_count"
+        android:id="@+id/et_song_plays_count"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/tv_song_duration"/>
+        android:layout_below="@+id/et_new_song_duration"/>
     <ImageView
-        android:id="@+id/song_image"
+        android:id="@+id/new_song_image"
         android:layout_width="match_parent"
         android:layout_height="250dp"
         android:scaleType="fitXY"/>
 
-
+    <Button
+        android:id="@+id/btn_save"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Save"/>
 
 </RelativeLayout>
