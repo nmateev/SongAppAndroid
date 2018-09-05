@@ -12,7 +12,7 @@ import butterknife.ButterKnife;
 
 public class SongDetailsActivity extends BaseDrawerActivity {
 
-    public static final String EXTRA_KEY = "SONG_EXTRA_KEY";
+    public static final String SONG_EXTRA_KEY = "SONG_EXTRA_KEY";
 
     @Inject
     SongDetailsFragment mSongDetailsFragment;
@@ -28,7 +28,7 @@ public class SongDetailsActivity extends BaseDrawerActivity {
         ButterKnife.bind(this);
 
         Intent intent = getIntent();
-        Song song = (Song) intent.getSerializableExtra(SongDetailsActivity.EXTRA_KEY);
+        Song song = (Song) intent.getSerializableExtra(SongDetailsActivity.SONG_EXTRA_KEY);
 
         mSongDetailsPresenter.setSongId(song.getId());
         mSongDetailsFragment.setPresenter(mSongDetailsPresenter);

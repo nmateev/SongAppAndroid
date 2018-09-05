@@ -1,8 +1,8 @@
 package com.wasp.songapp.views;
 
 import android.content.Intent;
-import android.view.View;
 import android.support.v7.widget.Toolbar;
+import android.view.View;
 
 import com.mikepenz.materialdrawer.Drawer;
 import com.mikepenz.materialdrawer.DrawerBuilder;
@@ -11,14 +11,14 @@ import com.mikepenz.materialdrawer.model.PrimaryDrawerItem;
 import com.mikepenz.materialdrawer.model.SecondaryDrawerItem;
 import com.mikepenz.materialdrawer.model.interfaces.IDrawerItem;
 import com.wasp.songapp.R;
-import com.wasp.songapp.views.songslist.SongsListActivity;
+import com.wasp.songapp.views.mysongslist.MySongsListActivity;
 
 import butterknife.BindView;
 import dagger.android.support.DaggerAppCompatActivity;
 
 public abstract class BaseDrawerActivity extends DaggerAppCompatActivity {
 
-    @BindView(R.id.drawer_toolbar)
+    @BindView(R.id.tb_drawer_toolbar)
     Toolbar mToolbar;
 
     public BaseDrawerActivity() {
@@ -70,7 +70,7 @@ public abstract class BaseDrawerActivity extends DaggerAppCompatActivity {
     //todo: Song.identifier
     private Intent getNextIntent(long identifier) {
         if (identifier == 0) {
-            return new Intent(this, SongsListActivity.class);
+            return new Intent(this, MySongsListActivity.class);
         }
         return null;
     }

@@ -19,14 +19,13 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-<<<<<<< HEAD
-        <activity android:name=".views.songslist.SongsListActivity"></activity>
 
-        <activity android:name=".views.songdetails.SongDetailsActivity"></activity>
-=======
+        <activity android:name=".views.songdetails.SongDetailsActivity">
+
+        </activity>
         <activity android:name=".views.mysongslist.MySongsListActivity">
         </activity>
->>>>>>> 5950619acf601050d96d2882bd57ca6b6ff40654
+
     </application>
 
 </manifest>

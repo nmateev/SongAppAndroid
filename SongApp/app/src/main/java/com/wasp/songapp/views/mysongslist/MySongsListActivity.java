@@ -6,6 +6,7 @@ import android.widget.Toolbar;
 
 import com.wasp.songapp.R;
 import com.wasp.songapp.models.Song;
+import com.wasp.songapp.views.songdetails.SongDetailsActivity;
 
 import javax.inject.Inject;
 
