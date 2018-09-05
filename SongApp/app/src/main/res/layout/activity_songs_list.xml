@@ -1,12 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".views.songslist.SongsListActivity">
+    tools:context=".views.mysongslist.MySongsListActivity">
 
-    <TextView
+    <Toolbar
+        android:id="@+id/tb_drawer_toolbar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Songs list" />
-</android.support.constraint.ConstraintLayout>
+        android:layout_height="wrap_content">
+    </Toolbar>
+
+    <FrameLayout
+        android:id="@+id/fr_my_songs_list_fragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/tb_drawer_toolbar">
+    </FrameLayout>
+
+</RelativeLayout>

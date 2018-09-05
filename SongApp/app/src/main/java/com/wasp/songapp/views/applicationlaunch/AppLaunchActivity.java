@@ -1,11 +1,10 @@
 package com.wasp.songapp.views.applicationlaunch;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 import com.wasp.songapp.R;
-import com.wasp.songapp.views.songslist.SongsListActivity;
+import com.wasp.songapp.views.mysongslist.MySongsListActivity;
 
 import javax.inject.Inject;
 
@@ -35,7 +34,7 @@ public class AppLaunchActivity extends DaggerAppCompatActivity implements AppLau
 
     @Override
     public void navigateToNextActivity() {
-        Intent intent = new Intent(this, SongsListActivity.class);
+        Intent intent = new Intent(this, MySongsListActivity.class);
         startActivity(intent);
         finish();
     }

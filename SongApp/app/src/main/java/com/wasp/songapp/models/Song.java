@@ -1,6 +1,8 @@
 package com.wasp.songapp.models;
 
-public class Song {
+import java.io.Serializable;
+
+public class Song implements Serializable {
 
     private static final int INITIAL_PLAYS_COUNT = 0;
 
