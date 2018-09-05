@@ -1,5 +1,7 @@
 package com.wasp.songapp.repositories.base;
 
+import com.wasp.songapp.models.Song;
+
 import java.io.IOException;
 import java.util.List;
 

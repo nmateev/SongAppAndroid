@@ -24,20 +24,25 @@ public class HttpRepository<T> implements Repository<T> {
     @Override
     public void add(T item) throws IOException {
 
-
         String requestBody = mJsonParser.toJson(item);
-
-        String responseBody = mHttpRequester.post(mServerUrl, requestBody);
+        String postServerUrl = mServerUrl + "/new";
+        mHttpRequester.post(postServerUrl, requestBody);
     }
 
     @Override
     public void delete(int id) throws IOException {
+        String deleteServerUrl = mServerUrl + "/delete/" + id;
 
+        mHttpRequester.delete(deleteServerUrl, id);
 
     }
 
     @Override
     public void update(int id) throws IOException {
+        String updateServerUrl = mServerUrl + "/update/" + id;
+
+        mHttpRequester.update(updateServerUrl, id);
+
 
     }
 
@@ -54,7 +59,7 @@ public class HttpRepository<T> implements Repository<T> {
 
 
         String itemsJson = null;
-        itemsJson = mHttpRequester.get(mServerUrl);
+        itemsJson = mHttpRequester.get(mServerUrl + "/get");
         return mJsonParser.fromJsonArray(itemsJson);
 
     }

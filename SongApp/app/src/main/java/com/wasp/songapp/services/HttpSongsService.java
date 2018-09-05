@@ -10,45 +10,50 @@ import java.util.stream.Collectors;
 
 public class HttpSongsService implements SongsService {
 
-    private Repository<Song> songsRepository;
+    private final Repository<Song> mSongsRepository;
+
+    public HttpSongsService(Repository<Song> songsRepository) {
+        mSongsRepository = songsRepository;
+    }
 
 
     @Override
     public void addSong(Song newSong) throws Exception {
-        songsRepository.add(newSong);
+        mSongsRepository.add(newSong);
     }
 
     @Override
     public void deleteSong(int id) throws Exception {
-        songsRepository.delete(id);
+        mSongsRepository.delete(id);
     }
 
     @Override
     public void updateSongPlayCounter(int id) throws Exception {
-        songsRepository.update(id);
+        mSongsRepository.update(id);
     }
 
     @Override
     public Song getSongById(int id) throws IOException {
-        return songsRepository.getById(id);
+        return mSongsRepository.getById(id);
     }
 
     @Override
     public List<Song> getAllSongs() throws IOException {
-        return songsRepository.getAll();
+        return mSongsRepository.getAll();
     }
 
     @Override
-    public List<Song> getFilteredSongs(String pattern) throws IOException {
+    public List<Song> getFilteredSongs(String searchPattern) throws IOException {
 
-        String patternToLower = pattern.toLowerCase();
+        String searchPatternLowerCase = searchPattern.toLowerCase();
 
         return getAllSongs()
                 .stream()
                 .filter(song -> song
                         .getAuthorName()
                         .toLowerCase()
-                        .contains(patternToLower))
+                        .contains(searchPatternLowerCase))
                 .collect(Collectors.toList());
     }
+
 }

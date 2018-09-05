@@ -6,5 +6,9 @@ public interface HttpRequester {
 
     String get(String url) throws IOException;
 
-    String post(String url, String body) throws IOException;
+    void post(String url, String body) throws IOException;
+
+    void delete(String url, int id) throws IOException;
+
+    void update(String url, int id) throws IOException;
 }

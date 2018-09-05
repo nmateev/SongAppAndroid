@@ -2,25 +2,24 @@ package com.wasp.songapp.models;
 
 public class Song {
 
+    private static final int INITIAL_PLAYS_COUNT = 0;
+
     public int id;
     public String songTitle;
     public String authorName;
     public String songDuration;
     public int playsCount;
-
-
     public String imageUrl;
-
 
     public Song() {
 
     }
 
-    public Song(String songTitle, String authorName, String songDuration, int playsCount, String imageUrl) {
+    public Song(String songTitle, String authorName, String songDuration, String imageUrl) {
         setSongTitle(songTitle);
         setAuthorName(authorName);
         setSongDuration(songDuration);
-        setPlaysCount(playsCount);
+        setPlaysCount(INITIAL_PLAYS_COUNT);
         setImageUrl(imageUrl);
     }
 

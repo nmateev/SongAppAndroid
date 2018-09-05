@@ -3,6 +3,7 @@ package com.wasp.songapp.http;
 import com.wasp.songapp.http.base.HttpRequester;
 
 import java.io.IOException;
+
 import okhttp3.MediaType;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -34,7 +35,7 @@ public class OkHttpHttpRequester implements HttpRequester {
     }
 
     @Override
-    public String post(String url, String bodyString) throws IOException {
+    public void post(String url, String bodyString) throws IOException {
 
         OkHttpClient client = new OkHttpClient();
 
@@ -47,12 +48,38 @@ public class OkHttpHttpRequester implements HttpRequester {
                 .url(url)
                 .build();
 
-        Response response = client.newCall(request).execute();
-        String responseBody = response.body().string();
-
-        return responseBody;
+        client
+                .newCall(request)
+                .execute();
 
     }
 
-    //to do add delete,update
+    @Override
+    public void delete(String url, int id) throws IOException {
+        OkHttpClient client = new OkHttpClient();
+        Request request = new Request.Builder()
+                .delete()
+                .url(url)
+                .build();
+
+        client
+                .newCall(request)
+                .execute();
+
+    }
+
+    @Override
+    public void update(String url, int id) throws IOException {
+
+        OkHttpClient client = new OkHttpClient();
+        Request request = new Request.Builder()
+                .method("PUT", null)
+                .url(url)
+                .build();
+
+        client
+                .newCall(request)
+                .execute();
+
+    }
 }

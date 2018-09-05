@@ -1,32 +1,53 @@
 package com.wasp.songappspring.models;
 
-import com.wasp.songappspring.utils.IdGenerator;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 public class Song {
     //fields
+
+    @NotNull
+    @Min(value = 1)
     public int id;
+
+    @NotNull
+    @Size(min = 2, max = 60)
     public String songTitle;
+
+    @NotNull
+    @Size(min = 2, max = 60)
     public String authorName;
+
+    @NotNull
+    @Size(min = 2, max = 60)
     public String songDuration;
+
+    @NotNull
+    @Min(value = 0)
     public int playsCount;
+
+    @NotNull
+    @Size(min = 5, max = 1000)
     public String imageUrl;
 
 
     //constructor
 
-    public Song(){
+    public Song() {
 
     }
-    public Song(String songTitle, String authorName, String songDuration, int playsCount,String imageUrl) {
+
+    public Song(String songTitle, String authorName, String songDuration, int playsCount, String imageUrl) {
         this.songTitle = songTitle;
         this.authorName = authorName;
         this.songDuration = songDuration;
         this.playsCount = playsCount;
-        this.imageUrl=imageUrl;
+        this.imageUrl = imageUrl;
     }
 
-    public Song(int id,String songTitle, String authorName, String songDuration, int playsCount,String imageUrl){
-        this(songTitle,authorName,songDuration,playsCount,imageUrl);
+    public Song(int id, String songTitle, String authorName, String songDuration, int playsCount, String imageUrl) {
+        this(songTitle, authorName, songDuration, playsCount, imageUrl);
         this.setId(id);
     }
 
