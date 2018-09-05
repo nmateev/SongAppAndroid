@@ -29,23 +29,23 @@ public abstract class BaseDrawerActivity extends DaggerAppCompatActivity {
     }
 
     public void setupDrawer() {
-        PrimaryDrawerItem mySongsList = new PrimaryDrawerItem()
+        PrimaryDrawerItem mySongsListItem = new PrimaryDrawerItem()
                 .withIdentifier(MySongsListActivity.DRAWER_IDENTIFIER)
-                .withIcon(android.R.drawable.btn_plus)
                 .withName(MY_SONGS_DRAWER_NAME);
 
         SecondaryDrawerItem addNewSongItem = new SecondaryDrawerItem()
                 .withIdentifier(0)
-                .withIcon(android.R.drawable.btn_plus)
                 .withName(ADD_NEW_SONG_DRAWER_NAME);
 
         Drawer drawer = new DrawerBuilder()
                 .withActivity(this)
                 .withToolbar(getToolbar())
                 .addDrawerItems(
-                        mySongsList,
+                        mySongsListItem
+                                .withIcon(R.drawable.drawermysongsicon),
                         new DividerDrawerItem(),
-                        addNewSongItem,
+                        addNewSongItem
+                                .withIcon(R.drawable.draweraddsongicon),
                         new DividerDrawerItem()
                 )
                 .withOnDrawerItemClickListener(new Drawer.OnDrawerItemClickListener() {
