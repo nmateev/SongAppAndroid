@@ -159,9 +159,8 @@ public class MySongsListFragment extends Fragment implements MySongsListContract
     }
 
     @OnItemLongClick(R.id.lv_my_songs_list_view)
-    public boolean onItemLongClick(AdapterView<?> arg0, View arg1,
-                                   int pos, long id) {
-        Song songToDelete = mSongsArrayAdapter.getItem(pos);
+    public boolean onItemLongClick(int position) {
+        Song songToDelete = mSongsArrayAdapter.getItem(position);
         mPresenter.songForDeletionIsSelected(songToDelete);
         return true;
     }
