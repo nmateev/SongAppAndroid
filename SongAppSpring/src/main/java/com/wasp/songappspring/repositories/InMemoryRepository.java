@@ -20,19 +20,35 @@ public class InMemoryRepository implements SongsRepository {
         idGenerator=new IdGenerator();
         songsList= new ArrayList<>();
         songsList.add(new Song(idGenerator.getNextId(),"Eastside","Benny Blanco, Hasley & Khalid","2.53",0,
-                "https://www.google.bg/search?q=benny+blanco+halsey+%26+khalid+%E2%80%93+eastside&source=lnms&tbm=isch&sa=X&ved=0ahUKEwiwqMXJpaLdAhVJliwKHTcjDXYQ_AUICigB&biw=1536&bih=759#imgrc=lZVfA03w1hxQeM:"));
+                "https://i1.wp.com/www.themiddlephinger.com/wp-content/uploads/2018/07/kurtbiersmith_35575312_264523974128408_8451742666336501760_n.jpg?zoom=1.25&resize=791%2C452"));
         songsList.add(new Song(idGenerator.getNextId(),"Promises","Calvin Harris, Sam Smith","4.05",0,
-                "http://www.officialcharts.com/media/646847/calvin_harris_2015.png?width=796&mode=stretch"));
+                "https://dancingastro-wpengine.netdna-ssl.com/wp-content/uploads/2017/05/calvin-harris-2017-42-west.jpg"));
         songsList.add(new Song(idGenerator.getNextId(),"Shotgun","George Ezra","3.27",0,
-                "https://www.google.bg/search?biw=1536&bih=759&tbm=isch&sa=1&ei=ZfmOW8__M4OasgG90bXoBQ&q=george+ezra&oq=george+e&gs_l=img.3.0.0j0i30k1l9.201655.204195.0.205320.8.8.0.0.0.0.112.659.5j2.7.0....0...1c.1.64.img..1.7.655...35i39k1j0i67k1j0i10k1.0.9f08N-fES0I#imgrc=61azANPGoaYrNM:"));
+                "https://images-na.ssl-images-amazon.com/images/I/717F7NA799L.jpg"));
         songsList.add(new Song(idGenerator.getNextId(),"In my feelings","Drake","7.59",0,
                 "https://thefader-res.cloudinary.com/private_images/w_1260,c_limit,f_auto,q_auto:best/drake-views-from-the-6-cover-story-interview_ic4ox9/drake.jpg"));
         songsList.add(new Song(idGenerator.getNextId(),"Girls like you","Maroon 5","4.30",0,
-                "https://www.google.bg/search?biw=1536&bih=759&tbm=isch&sa=1&ei=M_qOW4agMMqasAHP95ewCg&q=maroon+5&oq=maroon+5&gs_l=img.3..0l7j0i30k1l3.53963.56683.0.56877.8.7.0.1.1.0.114.643.6j1.7.0....0...1c.1.64.img..0.8.641...35i39k1j0i67k1j0i10k1.0.wW92lN_wtxQ#imgrc=Q8kTnZjq7-AmXM:"));
+                "http://peggysuerecords.com/photo/maroon-5/#prettyPhoto[pp_gallery]/8/"));
         songsList.add(new Song(idGenerator.getNextId(),"No brainer","Justin Bieber,Chance the rapper & Quavo","4.22",0,
-                "https://www.google.bg/search?biw=1536&bih=759&tbm=isch&sa=1&ei=svqOW8imIoqXsAG89LuYCw&q=justin+bieber&oq=just&gs_l=img.3.1.0i67k1j0j0i67k1j0l6j0i67k1.24287.25084.0.26990.4.3.0.1.1.0.110.286.2j1.3.0....0...1c.1.64.img..0.4.285....0.kEnNg6rU6qA#imgrc=QGnNsYZPNMQ-UM:"));
+                "https://pbs.twimg.com/profile_images/898295311893880832/bCps4HFV_400x400.jpg"));
         songsList.add(new Song(idGenerator.getNextId(),"God is a woman","Ariana Grande","4.01",0,
-                "https://www.google.bg/search?biw=1536&bih=759&tbm=isch&sa=1&ei=zvqOW9OsE6GQmgWktKm4CA&q=ariana+grande&oq=ar&gs_l=img.3.0.0i67k1l4j0j0i67k1j0l2j0i67k1j0.46061.46420.0.47982.2.2.0.0.0.0.111.199.1j1.2.0....0...1c.1.64.img..0.2.198...35i39k1.0.seZF5qsX1Uk#imgrc=qiRz7gHUi21ScM:"));
+                "https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/ariana-grande-impressions-1525271618.jpg?resize=980:*"));
+        songsList.add(new Song(idGenerator.getNextId(),"All i am","Jess Glynne","3.58",0,
+                "http://www.officialcharts.com/media/648195/jess-glynne-1100.jpg?width=796&mode=stretch"));
+        songsList.add(new Song(idGenerator.getNextId(),"Ring ring","Jax Jones, Mabel ft.Rich The Kid","4.00",0,
+                "https://dubiks.com/wp-content/uploads/2018/07/Jax-Jones-Mabel-Ring-Ring-ft.-Rich-The-Kid-e1530704631260.jpg"));
+        songsList.add(new Song(idGenerator.getNextId(),"In my mind","Dynoro & Gigi D'agostino","3.06",0,
+                "https://www.djmagitalia.com/wp-content/uploads/2018/06/Gigi_DAgostino_2-e1445012021424-1024x577.jpg"));
+        songsList.add(new Song(idGenerator.getNextId(),"Nevermind","Dennis Lloyd","2.37",0,
+                "https://s3.amazonaws.com/files.madeinkatana.com/warners/uploads/5acd92a231b79.jpg"));
+        songsList.add(new Song(idGenerator.getNextId(),"Youngblood","5 seconds of summer","3.49",0,
+                "https://www.much.com/wp-content/uploads/2017/04/Five-Seconds-of-Summer-Return.jpg"));
+        songsList.add(new Song(idGenerator.getNextId(),"Rise","Jonas Blue ft.Jack&Jack","3.39",0,
+                "https://www.billboard.com/files/styles/article_main_image/public/media/jonas-blue-jack-and-jack-2018-billboard-1548.jpg"));
+        songsList.add(new Song(idGenerator.getNextId(),"Don't leave me alone","David Guetta ft. Anne-Marie","3.07",0,
+                "https://i1.wp.com/jonalisblog.com/wp-content/uploads/2018/07/david-guetta-anne-marie-dont-leave-me-alone.png?w=868"));
+        songsList.add(new Song(idGenerator.getNextId(),"Solo","Clean Bandit ft.Demi Lovato","3.44",0,
+                "http://www.njoy.bg/web/files/article_images/2018/06/21582/thumb_835x510_20217.jpg"));
     }
 
 
