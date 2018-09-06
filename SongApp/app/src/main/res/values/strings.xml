@@ -5,5 +5,8 @@
     <string name="toolbar_title_song_details">Song Details</string>
     <string name="toolbar_title_add_new_song">Add new song</string>
     <string name="edit_text_hint_search_songs">Search songs</string>
+    <string name="deletion_answer_no">No</string>
+    <string name="deletion_answer_yes">Yes</string>
+    <string name="deletion_question">Do you want to delete this song from your list?</string>
 
 </resources>

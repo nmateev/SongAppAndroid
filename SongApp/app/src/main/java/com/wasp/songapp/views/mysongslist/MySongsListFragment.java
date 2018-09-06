@@ -1,12 +1,15 @@
 package com.wasp.songapp.views.mysongslist;
 
 
+import android.app.AlertDialog;
 import android.os.Bundle;
 import android.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.AlphaAnimation;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.ProgressBar;
@@ -23,12 +26,12 @@ import javax.inject.Inject;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnItemClick;
+import butterknife.OnItemLongClick;
+import butterknife.OnLongClick;
+import butterknife.OnTextChanged;
 
 
 public class MySongsListFragment extends Fragment implements MySongsListContracts.View {
-    private static final String NO_SONGS_AVAILABLE_MESSAGE = "Your song list is empty";
-    private MySongsListContracts.Presenter mPresenter;
-    private MySongsListContracts.Navigator mNavigator;
 
     @BindView(R.id.et_search_songs)
     EditText mSearchBar;
@@ -41,6 +44,15 @@ public class MySongsListFragment extends Fragment implements MySongsListContract
 
     @Inject
     SongsArrayAdapter mSongsArrayAdapter;
+    private static final float FROM_ALPHA_ANIMATION = 1F;
+    private static final float TO_ALPHA_ANIMATION = 0.3F;
+    private Button mPositiveDialogButton;
+    private Button mNegativeDialogButton;
+    private AlertDialog mDeletionDialog;
+    private AlphaAnimation mButtonClickAnimation;
+    private MySongsListContracts.Presenter mPresenter;
+    private MySongsListContracts.Navigator mNavigator;
+
 
     @Inject
     public MySongsListFragment() {
@@ -74,12 +86,49 @@ public class MySongsListFragment extends Fragment implements MySongsListContract
         mSongsArrayAdapter.notifyDataSetChanged();
     }
 
+
     @Override
-    public void showEmptyListMessage() {
+    public void showDialogForDeletion(Song songToDelete) {
+
+        setupDeletionDialog();
+
+        mDeletionDialog.show();
+
+        mPositiveDialogButton
+                .setOnClickListener(view -> {
+                    view.startAnimation(mButtonClickAnimation);
+                    mPresenter.getActionOnConfirmedDeletion(songToDelete);
+                });
+        mNegativeDialogButton
+                .setOnClickListener(view -> {
+                    view.startAnimation(mButtonClickAnimation);
+                    mPresenter.getActionOnCancelledDeletion();
+                });
+    }
+
+    private void setupDeletionDialog() {
+        LayoutInflater inflater = LayoutInflater.from(this.getContext());
+        View dialogView = inflater.inflate(R.layout.song_deletion_dialog_layout, null);
+        AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(getContext());
+        dialogBuilder.setView(dialogView);
+        mDeletionDialog = dialogBuilder.create();
+        mPositiveDialogButton = dialogView.findViewById(R.id.btn_answer_yes);
+        mNegativeDialogButton = dialogView.findViewById(R.id.btn_answer_no);
+        mButtonClickAnimation = new AlphaAnimation(FROM_ALPHA_ANIMATION, TO_ALPHA_ANIMATION);
+    }
+
+    @Override
+    public void hideDeletionDialog() {
+        mDeletionDialog.cancel();
+    }
+
+    @Override
+    public void showMessage(String message) {
         Toast
-                .makeText(getContext(), NO_SONGS_AVAILABLE_MESSAGE, Toast.LENGTH_LONG)
+                .makeText(getContext(), message, Toast.LENGTH_LONG)
                 .show();
     }
+
 
     @Override
     public void showError(Throwable error) {
@@ -107,6 +156,22 @@ public class MySongsListFragment extends Fragment implements MySongsListContract
 
         Song selectedSong = mSongsArrayAdapter.getItem(position);
         mPresenter.songIsSelected(selectedSong);
+    }
+
+    @OnItemLongClick(R.id.lv_my_songs_list_view)
+    public boolean onItemLongClick(AdapterView<?> arg0, View arg1,
+                                   int pos, long id) {
+        Song songToDelete = mSongsArrayAdapter.getItem(pos);
+        mPresenter.songForDeletionIsSelected(songToDelete);
+        return true;
+    }
+
+    @OnTextChanged(R.id.et_search_songs)
+    public void onTextChanged() {
+        String searchQuery = mSearchBar
+                .getText()
+                .toString();
+        mPresenter.filterSongsWith(searchQuery);
     }
 
     @Override

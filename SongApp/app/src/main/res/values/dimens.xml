@@ -6,4 +6,5 @@
     <dimen name="MediumMargin">20dp</dimen>
     <dimen name="material_drawer_item_primary_text">18sp</dimen>
     <dimen name="SmallPadding">10dp</dimen>
+    <dimen name="BigMargin">50dp</dimen>
 </resources>
