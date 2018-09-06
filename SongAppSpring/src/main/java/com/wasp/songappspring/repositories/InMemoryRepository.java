@@ -28,7 +28,7 @@ public class InMemoryRepository implements SongsRepository {
         songsList.add(new Song(idGenerator.getNextId(),"In my feelings","Drake","7.59",0,
                 "https://thefader-res.cloudinary.com/private_images/w_1260,c_limit,f_auto,q_auto:best/drake-views-from-the-6-cover-story-interview_ic4ox9/drake.jpg"));
         songsList.add(new Song(idGenerator.getNextId(),"Girls like you","Maroon 5","4.30",0,
-                "http://peggysuerecords.com/photo/maroon-5/#prettyPhoto[pp_gallery]/8/"));
+                "https://www.thoughtco.com/thmb/Y6w7-iTVODuN2JCtG3y97qP5lIw=/768x0/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)/maroon-5-5b103f953128340036787a58.jpg"));
         songsList.add(new Song(idGenerator.getNextId(),"No brainer","Justin Bieber,Chance the rapper & Quavo","4.22",0,
                 "https://pbs.twimg.com/profile_images/898295311893880832/bCps4HFV_400x400.jpg"));
         songsList.add(new Song(idGenerator.getNextId(),"God is a woman","Ariana Grande","4.01",0,

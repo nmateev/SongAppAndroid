@@ -97,13 +97,12 @@ public class MySongsListPresenter implements MySongsListContracts.Presenter {
                 })
                 .subscribeOn(mSchedulerProvider.backgroundThread())
                 .observeOn(mSchedulerProvider.uiThread())
-                .doOnComplete(() -> {
-                    mView.showMessage(Constants.SUCCESSFUL_DELETION_OF_SONG);
-                    this.showSongsList();
-                })
                 .doFinally(mView::hideDeletionDialog)
-                .doOnError(error -> mView.showError(error))
-                .subscribe();
+                .subscribe(aVoid -> { },
+                        error -> mView.showError(error),
+                        () -> { mView.showMessage(Constants.SUCCESSFUL_DELETION_OF_SONG);
+                        this.showSongsList();
+                });
     }
 
     @Override
