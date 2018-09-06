@@ -33,7 +33,7 @@ public class MySongsListPresenter implements MySongsListContracts.Presenter {
     }
 
     @Override
-    public void selectSong(Song song) {
+    public void songIsSelected(Song song) {
         mView.showSongDetails(song);
     }
 
@@ -51,10 +51,7 @@ public class MySongsListPresenter implements MySongsListContracts.Presenter {
                 .subscribeOn(mSchedulerProvider.backgroundThread())
                 .observeOn(mSchedulerProvider.uiThread())
                 .doFinally(mView::hideProgressBarLoading)
-                .subscribe(
-                        this::presentSongsToView,
-                        error -> mView.showError(error)
-                );
+                .subscribe(this::presentSongsToView, mView::showError);
     }
 
     @Override

@@ -23,7 +23,4 @@ public interface SongDetailsContracts {
 
         void setSongId(int id);
     }
-
-
-
 }

@@ -31,7 +31,7 @@ implements SongCreateContracts.View{
     @BindView(R.id.et_new_song_duration)
     EditText mNewSongDuration;
 
-    @BindView(R.id.new_song_image)
+    @BindView(R.id.et_new_song_image_url)
     EditText mNewSongImage;
 
 

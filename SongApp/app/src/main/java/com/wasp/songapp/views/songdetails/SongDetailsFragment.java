@@ -19,7 +19,7 @@ import butterknife.ButterKnife;
 
 
 public class SongDetailsFragment extends Fragment
-implements SongDetailsContracts.View{
+        implements SongDetailsContracts.View {
 
     //fields
     private SongDetailsContracts.Presenter mPresenter;
@@ -47,7 +47,7 @@ implements SongDetailsContracts.View{
 
     //methods
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.fragment_song_details, container, false);
 

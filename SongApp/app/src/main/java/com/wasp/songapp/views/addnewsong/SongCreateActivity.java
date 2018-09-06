@@ -12,9 +12,9 @@ import butterknife.ButterKnife;
 
 public class SongCreateActivity extends BaseDrawerActivity implements SongCreateContracts.Navigator {
     //fields
-    public static final long IDENTIFIER = 298;
+    public static final long DRAWER_IDENTIFIER = 298;
     @Inject
-    SongCreateFragment mView;
+    SongCreateFragment mSongCreateFragment;
 
     @Inject
     SongCreateContracts.Presenter mPresenter;
@@ -25,18 +25,18 @@ public class SongCreateActivity extends BaseDrawerActivity implements SongCreate
         setContentView(R.layout.activity_song_create);
         ButterKnife.bind(this);
 
-        mView.setPresenter(mPresenter);
-        mView.setNavigator(this);
+        mSongCreateFragment.setPresenter(mPresenter);
+        mSongCreateFragment.setNavigator(this);
 
         getFragmentManager()
                 .beginTransaction()
-                .replace(R.id.activity_song_create, mView)
+                .replace(R.id.fr_song_create, mSongCreateFragment)
                 .commit();
     }
 
     @Override
     protected long getIdentifier() {
-        return IDENTIFIER;
+        return DRAWER_IDENTIFIER;
     }
 
     @Override

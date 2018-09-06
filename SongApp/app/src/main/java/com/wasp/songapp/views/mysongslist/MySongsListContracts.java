@@ -26,7 +26,7 @@ public interface MySongsListContracts {
 
         void subscribe(MySongsListContracts.View view);
 
-        void selectSong(Song song);
+        void songIsSelected(Song song);
 
         void showSongsList();
 

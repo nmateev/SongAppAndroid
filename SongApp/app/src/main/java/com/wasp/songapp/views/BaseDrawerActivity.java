@@ -11,6 +11,7 @@ import com.mikepenz.materialdrawer.model.PrimaryDrawerItem;
 import com.mikepenz.materialdrawer.model.SecondaryDrawerItem;
 import com.mikepenz.materialdrawer.model.interfaces.IDrawerItem;
 import com.wasp.songapp.R;
+import com.wasp.songapp.views.addnewsong.SongCreateActivity;
 import com.wasp.songapp.views.mysongslist.MySongsListActivity;
 
 import butterknife.BindView;
@@ -34,7 +35,7 @@ public abstract class BaseDrawerActivity extends DaggerAppCompatActivity {
                 .withName(MY_SONGS_DRAWER_NAME);
 
         SecondaryDrawerItem addNewSongItem = new SecondaryDrawerItem()
-                .withIdentifier(0)
+                .withIdentifier(SongCreateActivity.DRAWER_IDENTIFIER)
                 .withName(ADD_NEW_SONG_DRAWER_NAME);
 
         Drawer drawer = new DrawerBuilder()
@@ -48,36 +49,33 @@ public abstract class BaseDrawerActivity extends DaggerAppCompatActivity {
                                 .withIcon(R.drawable.draweraddsongicon),
                         new DividerDrawerItem()
                 )
-                .withOnDrawerItemClickListener(new Drawer.OnDrawerItemClickListener() {
-                    @Override
-                    public boolean onItemClick(
-                            View view,
-                            int position,
-                            IDrawerItem drawerItem) {
-                        long identifier = drawerItem.getIdentifier();
+                .withOnDrawerItemClickListener((view, position, drawerItem) -> {
+                    long identifier = drawerItem.getIdentifier();
 
-                        if (getIdentifier() == identifier) {
-                            return false;
-                        }
-
-                        Intent intent = getNextIntent(identifier);
-                        if (intent == null) {
-                            return false;
-                        }
-
-                        startActivity(intent);
-                        return true;
+                    if (getIdentifier() == identifier) {
+                        return false;
                     }
+
+                    Intent intent = getNextIntent(identifier);
+                    if (intent == null) {
+                        return false;
+                    }
+
+                    startActivity(intent);
+                    return true;
                 })
                 .build();
     }
 
-    //todo: Song.identifier
+
     private Intent getNextIntent(long identifier) {
-        if (identifier == 0) {
+        if (identifier == MySongsListActivity.DRAWER_IDENTIFIER) {
             return new Intent(this, MySongsListActivity.class);
+        } else if (identifier == SongCreateActivity.DRAWER_IDENTIFIER) {
+            return new Intent(this, SongCreateActivity.class);
+        } else {
+            return null;
         }
-        return null;
     }
 
     public Toolbar getToolbar() {
