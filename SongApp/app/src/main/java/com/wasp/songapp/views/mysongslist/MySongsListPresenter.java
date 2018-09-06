@@ -33,7 +33,7 @@ public class MySongsListPresenter implements MySongsListContracts.Presenter {
     }
 
     @Override
-    public void selectSong(Song song) {
+    public void songIsSelected(Song song) {
         mView.showSongDetails(song);
     }
 
