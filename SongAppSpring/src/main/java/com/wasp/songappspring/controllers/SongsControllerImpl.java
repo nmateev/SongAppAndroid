@@ -33,9 +33,10 @@ public class SongsControllerImpl implements SongsControllerBase {
     }
 
     @RequestMapping(value = "/update/{id}", method = RequestMethod.PUT)
+
     @Override
-    public void updateSongPlayCounter(@PathVariable(value = "id") @Valid int id) {
-        songsService.updateSongPlayCounter(id);
+    public Song updateSongPlayCounter(@RequestBody @Valid Song songToUpdate, @PathVariable(value = "id") @Valid int id) {
+        return songsService.updateSongPlayCounter(songToUpdate,id);
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)

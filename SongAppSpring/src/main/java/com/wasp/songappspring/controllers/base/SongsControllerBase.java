@@ -8,9 +8,9 @@ public interface SongsControllerBase {
 
     void addSong(Song newSong);
 
-    void deleteSong(int id);
+    void deleteSong( int id);
 
-    void updateSongPlayCounter(int id);
+    Song updateSongPlayCounter(Song songToUpdate, int id);
 
     Song getSongById(int id);
 

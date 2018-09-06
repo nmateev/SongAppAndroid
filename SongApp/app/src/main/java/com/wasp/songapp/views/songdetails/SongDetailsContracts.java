@@ -9,11 +9,13 @@ public interface SongDetailsContracts {
 
         void setPresenter(Presenter presenter);
 
-        void showError(Throwable e);
+        void showError(Throwable error);
 
         void showLoading();
 
         void hideLoading();
+
+        void showMessage(String message);
     }
 
     interface Presenter {
@@ -22,5 +24,7 @@ public interface SongDetailsContracts {
         void loadSong();
 
         void setSongId(int id);
+
+        void playIsSelected();
     }
 }

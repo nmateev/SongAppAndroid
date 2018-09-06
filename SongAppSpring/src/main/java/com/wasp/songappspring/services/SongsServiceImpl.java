@@ -27,8 +27,8 @@ public class SongsServiceImpl implements SongsServiceBase {
     }
 
     @Override
-    public void updateSongPlayCounter(int id) {
-        songsRepository.updateSongPlayCounter(id);
+    public Song updateSongPlayCounter(Song songToUpdate, int id) {
+        return songsRepository.updateSongPlayCounter(songToUpdate, id);
     }
 
     @Override

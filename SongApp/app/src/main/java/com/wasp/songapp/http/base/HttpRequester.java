@@ -10,5 +10,5 @@ public interface HttpRequester {
 
     void delete(String url, int id) throws IOException;
 
-    void update(String url, int id) throws IOException;
+    String update(String url,String body , int id) throws IOException;
 }

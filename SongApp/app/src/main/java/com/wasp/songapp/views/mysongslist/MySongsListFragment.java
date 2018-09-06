@@ -2,13 +2,12 @@ package com.wasp.songapp.views.mysongslist;
 
 
 import android.app.AlertDialog;
-import android.os.Bundle;
 import android.app.Fragment;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.AlphaAnimation;
-import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
@@ -27,7 +26,6 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnItemClick;
 import butterknife.OnItemLongClick;
-import butterknife.OnLongClick;
 import butterknife.OnTextChanged;
 
 
@@ -44,8 +42,7 @@ public class MySongsListFragment extends Fragment implements MySongsListContract
 
     @Inject
     SongsArrayAdapter mSongsArrayAdapter;
-    private static final float FROM_ALPHA_ANIMATION = 1F;
-    private static final float TO_ALPHA_ANIMATION = 0.3F;
+
     private Button mPositiveDialogButton;
     private Button mNegativeDialogButton;
     private AlertDialog mDeletionDialog;
@@ -114,7 +111,7 @@ public class MySongsListFragment extends Fragment implements MySongsListContract
         mDeletionDialog = dialogBuilder.create();
         mPositiveDialogButton = dialogView.findViewById(R.id.btn_answer_yes);
         mNegativeDialogButton = dialogView.findViewById(R.id.btn_answer_no);
-        mButtonClickAnimation = new AlphaAnimation(FROM_ALPHA_ANIMATION, TO_ALPHA_ANIMATION);
+        mButtonClickAnimation = new AlphaAnimation(Constants.FROM_ALPHA_ANIMATION, Constants.TO_ALPHA_ANIMATION);
     }
 
     @Override

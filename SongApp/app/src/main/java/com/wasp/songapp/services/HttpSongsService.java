@@ -29,8 +29,9 @@ public class HttpSongsService implements SongsService {
     }
 
     @Override
-    public void updateSongPlayCounter(int id) throws Exception {
-        mSongsRepository.update(id);
+    public Song updateSongPlayCounter(Song songToUpdate, int id) throws Exception {
+
+        return mSongsRepository.update(songToUpdate, id);
     }
 
     @Override

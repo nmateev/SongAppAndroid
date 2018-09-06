@@ -10,7 +10,7 @@ public interface SongsServiceBase {
 
     void deleteSong(int id);
 
-    void updateSongPlayCounter(int id);
+    Song updateSongPlayCounter(Song songToUpdate, int id);
 
     Song getSongById(int id);
 
