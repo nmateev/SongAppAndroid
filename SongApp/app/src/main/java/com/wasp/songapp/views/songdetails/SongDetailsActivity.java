@@ -28,7 +28,6 @@ public class SongDetailsActivity extends BaseDrawerActivity {
         setContentView(R.layout.activity_song_details);
 
         ButterKnife.bind(this);
-        setSupportActionBar(getToolbar());
         Intent intent = getIntent();
         Song song = (Song) intent.getSerializableExtra(SongDetailsActivity.SONG_EXTRA_KEY);
 

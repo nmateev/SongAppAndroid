@@ -3,13 +3,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".views.songdetails.SongDetailsActivity">
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/tb_drawer_toolbar"
         android:layout_width="match_parent"
         android:layout_height="40dp"
-        android:background="@color/colorPrimaryDark">
+        android:background="@color/colorPrimaryDark"
+        app:title="@string/toolbar_title_song_details"
+        app:titleMarginStart="@dimen/MediumMargin">
 
     </android.support.v7.widget.Toolbar>
 

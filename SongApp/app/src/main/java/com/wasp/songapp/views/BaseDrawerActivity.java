@@ -67,7 +67,7 @@ public abstract class BaseDrawerActivity extends DaggerAppCompatActivity {
                 .build();
     }
 
-    //todo: Song.identifier
+
     private Intent getNextIntent(long identifier) {
         if (identifier == MySongsListActivity.DRAWER_IDENTIFIER) {
             return new Intent(this, MySongsListActivity.class);

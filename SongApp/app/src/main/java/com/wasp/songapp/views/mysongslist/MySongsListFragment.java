@@ -6,14 +6,19 @@ import android.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import com.wasp.songapp.R;
 import com.wasp.songapp.models.Song;
+import com.wasp.songapp.utils.Constants;
 
 import java.util.List;
 
 import javax.inject.Inject;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
 
 
 public class MySongsListFragment extends Fragment implements MySongsListContracts.View {
@@ -21,6 +26,8 @@ public class MySongsListFragment extends Fragment implements MySongsListContract
     private MySongsListContracts.Presenter mPresenter;
     private MySongsListContracts.Navigator mNavigator;
 
+    @BindView(R.id.et_search_songs)
+    EditText mSearchBar;
 
     @Inject
     public MySongsListFragment() {
@@ -31,7 +38,10 @@ public class MySongsListFragment extends Fragment implements MySongsListContract
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_my_songs_list, container, false);
+        View view = inflater.inflate(R.layout.fragment_my_songs_list, container, false);
+        ButterKnife.bind(this, view);
+
+        return view;
     }
 
     @Override
@@ -63,7 +73,10 @@ public class MySongsListFragment extends Fragment implements MySongsListContract
 
     @Override
     public void showError(Throwable error) {
-
+        String errorMessage = Constants.ERROR_MESSAGE + error.getMessage();
+        Toast
+                .makeText(getContext(), errorMessage, Toast.LENGTH_LONG)
+                .show();
     }
 
     @Override

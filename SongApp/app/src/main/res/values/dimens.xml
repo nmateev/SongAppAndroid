@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <dimen name="MediumText">22sp</dimen>
+    <dimen name="MediumMargin">20dp</dimen>
+    <dimen name="material_drawer_item_primary_text">18sp</dimen>
+</resources>

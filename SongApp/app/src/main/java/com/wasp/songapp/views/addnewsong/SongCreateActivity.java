@@ -24,7 +24,6 @@ public class SongCreateActivity extends BaseDrawerActivity implements SongCreate
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_song_create);
         ButterKnife.bind(this);
-        setSupportActionBar(getToolbar());
 
         mSongCreateFragment.setPresenter(mPresenter);
         mSongCreateFragment.setNavigator(this);
