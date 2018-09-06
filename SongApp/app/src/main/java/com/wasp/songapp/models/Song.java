@@ -26,6 +26,9 @@ public class Song implements Serializable {
         setImageUrl(imageUrl);
     }
 
+    public int getId() {
+        return id;
+    }
 
     public String getSongTitle() {
         return songTitle;
@@ -47,6 +50,10 @@ public class Song implements Serializable {
         return imageUrl;
     }
 
+    public void setPlaysCount(int playsCount) {
+        this.playsCount = playsCount;
+    }
+
     private void setSongTitle(String songTitle) {
         this.songTitle = songTitle;
     }
@@ -59,19 +66,12 @@ public class Song implements Serializable {
         this.songDuration = songDuration;
     }
 
-    private void setPlaysCount(int playsCount) {
-        this.playsCount = playsCount;
-    }
 
     private void setImageUrl(String imageUrl) {
         this.imageUrl = imageUrl;
     }
 
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
+    private void setId(int id) {
         this.id = id;
     }
 }

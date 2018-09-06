@@ -3,6 +3,7 @@ package com.wasp.songapp.views.songdetails;
 import com.wasp.songapp.async.base.SchedulerProvider;
 import com.wasp.songapp.models.Song;
 import com.wasp.songapp.services.base.SongsService;
+import com.wasp.songapp.utils.Constants;
 
 import javax.inject.Inject;
 
@@ -16,6 +17,7 @@ public class SongDetailsPresenter implements SongDetailsContracts.Presenter {
     private final SchedulerProvider mSchedulerProvider;
     private SongDetailsContracts.View mView;
     private int mSongId;
+    private Song mSelectedSong;
 
     //constructor
     @Inject
@@ -42,7 +44,11 @@ public class SongDetailsPresenter implements SongDetailsContracts.Presenter {
                 .subscribeOn(mSchedulerProvider.backgroundThread())
                 .observeOn(mSchedulerProvider.uiThread())
                 .doFinally(mView::hideLoading)
-                .subscribe(mView::showSong, mView::showError);
+                .subscribe(song -> {
+                            mView.showSong(song);
+                            mSelectedSong = song;
+                        },
+                        error -> mView.showError(error));
     }
 
     @Override
@@ -50,4 +56,30 @@ public class SongDetailsPresenter implements SongDetailsContracts.Presenter {
         mSongId = songId;
     }
 
+    @Override
+    public void playIsSelected() {
+        mView.showLoading();
+
+        int newPlaysCount = mSelectedSong
+                .getPlaysCount()
+                + Constants.SONG_PLAY_INCREMENT_VALUE;
+
+        mSelectedSong.setPlaysCount(newPlaysCount);
+
+        Disposable disposable = Observable
+                .create((ObservableOnSubscribe<Song>) emitter -> {
+                    Song songToUpdate = mSongsService.updateSongPlayCounter(mSelectedSong, mSongId);
+                    emitter.onNext(songToUpdate);
+                    emitter.onComplete();
+                })
+                .subscribeOn(mSchedulerProvider.backgroundThread())
+                .observeOn(mSchedulerProvider.uiThread())
+                .doFinally(mView::hideLoading)
+                .subscribe(updatedSong -> {
+                            mSelectedSong = updatedSong;
+                            mView.showMessage(Constants.SUCCESSFUL_PLAY_OF_SONG);
+                            mView.showSong(updatedSong);
+                        },
+                        mView::showError);
+    }
 }

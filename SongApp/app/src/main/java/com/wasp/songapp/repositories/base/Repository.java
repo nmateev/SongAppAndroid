@@ -12,7 +12,7 @@ public interface Repository<T> {
 
     void delete(int id) throws IOException;
 
-    void update(int id) throws IOException;
+    T update(T item, int id) throws IOException;
 
     T getById(int id) throws IOException;
 

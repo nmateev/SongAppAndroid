@@ -1,6 +1,7 @@
 package com.wasp.songapp.repositories;
 
 import com.wasp.songapp.http.base.HttpRequester;
+import com.wasp.songapp.models.Song;
 import com.wasp.songapp.parsers.base.JsonParser;
 import com.wasp.songapp.repositories.base.Repository;
 
@@ -38,11 +39,14 @@ public class HttpRepository<T> implements Repository<T> {
     }
 
     @Override
-    public void update(int id) throws IOException {
+    public T update(T item, int id) throws IOException {
         String updateServerUrl = mServerUrl + "/update/" + id;
 
-        mHttpRequester.update(updateServerUrl, id);
+        String requestBody = mJsonParser.toJson(item);
 
+        mHttpRequester.update(updateServerUrl,requestBody, id);
+
+        return getById(id);
 
     }
 

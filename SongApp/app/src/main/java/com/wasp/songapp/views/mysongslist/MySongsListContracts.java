@@ -19,7 +19,13 @@ public interface MySongsListContracts {
 
         void showAllSongs(List<Song> allSongs);
 
-        void showEmptyListMessage();
+      //  void showEmptyListMessage(String message);
+
+        void showDialogForDeletion(Song songToDelete);
+
+        void hideDeletionDialog();
+
+        void showMessage(String message);
     }
 
     interface Presenter {
@@ -30,8 +36,15 @@ public interface MySongsListContracts {
 
         void showSongsList();
 
-        void presentSongsToView(List<Song> allSongs);
+        void presentSongsToView(List<Song> allSongs, String message);
 
+        void filterSongsWith(String searchQuery);
+
+        void songForDeletionIsSelected(Song songToDelete);
+
+        void getActionOnCancelledDeletion();
+
+        void getActionOnConfirmedDeletion(Song songToDelete);
     }
 
     interface Navigator {

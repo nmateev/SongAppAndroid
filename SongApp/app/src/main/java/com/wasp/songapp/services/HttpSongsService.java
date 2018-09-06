@@ -5,6 +5,7 @@ import com.wasp.songapp.repositories.base.Repository;
 import com.wasp.songapp.services.base.SongsService;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -28,8 +29,9 @@ public class HttpSongsService implements SongsService {
     }
 
     @Override
-    public void updateSongPlayCounter(int id) throws Exception {
-        mSongsRepository.update(id);
+    public Song updateSongPlayCounter(Song songToUpdate, int id) throws Exception {
+
+        return mSongsRepository.update(songToUpdate, id);
     }
 
     @Override
@@ -47,13 +49,19 @@ public class HttpSongsService implements SongsService {
 
         String searchPatternLowerCase = searchPattern.toLowerCase();
 
-        return getAllSongs()
-                .stream()
-                .filter(song -> song
-                        .getAuthorName()
-                        .toLowerCase()
-                        .contains(searchPatternLowerCase))
-                .collect(Collectors.toList());
-    }
+        List<Song> allSongs = getAllSongs();
+        List<Song> filteredSongs = new ArrayList<>();
 
+        allSongs
+                .stream()
+                .filter(song -> song.getAuthorName().toLowerCase().contains(searchPatternLowerCase))
+                .forEach(filteredSongs::add);
+        allSongs
+                .stream()
+                .filter(song -> song.getSongTitle().toLowerCase().contains(searchPatternLowerCase))
+                .forEach(filteredSongs::add);
+
+        return filteredSongs;
+
+    }
 }

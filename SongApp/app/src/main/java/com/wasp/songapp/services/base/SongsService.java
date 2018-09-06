@@ -11,7 +11,7 @@ public interface SongsService {
 
     void deleteSong(int id) throws Exception;
 
-    void updateSongPlayCounter(int id) throws Exception;
+    Song updateSongPlayCounter(Song songToUpdate, int id) throws Exception;
 
     Song getSongById(int id) throws IOException;
 
