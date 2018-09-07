@@ -52,9 +52,4 @@ public class FavouriteSongsListActivity extends BaseDrawerActivity implements Fa
         return DRAWER_IDENTIFIER;
     }
 
-    @Override
-    protected void onStop() {
-        super.onStop();
-        finish();
-    }
 }

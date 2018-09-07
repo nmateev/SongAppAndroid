@@ -79,6 +79,7 @@ public class HttpSongsService implements SongsService {
         return getAllSongs()
                 .stream()
                 .filter(song -> song.getPlaysCount() >= Constants.MIN_SONG_PLAYS_COUNT_TO_BE_FAVORITE)
+                .sorted()
                 .collect(Collectors.toList());
 
     }

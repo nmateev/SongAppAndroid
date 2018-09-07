@@ -1,8 +1,10 @@
 package com.wasp.songapp.models;
 
+import android.support.annotation.NonNull;
+
 import java.io.Serializable;
 
-public class Song implements Serializable {
+public class Song implements Serializable, Comparable<Song> {
 
     private static final int INITIAL_PLAYS_COUNT = 0;
 
@@ -74,4 +76,18 @@ public class Song implements Serializable {
     private void setId(int id) {
         this.id = id;
     }
+
+    @Override
+    public int compareTo(@NonNull Song otherSong) {
+
+        int comparison =
+                Integer.compare(otherSong.getPlaysCount(),
+                        this.getPlaysCount());
+        if (comparison != 0) {
+            return comparison;
+        }
+        return this.getAuthorName()
+                .compareTo(otherSong.getAuthorName());
+    }
 }
+
