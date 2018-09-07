@@ -1,13 +1,15 @@
-package com.wasp.songapp.views.mysongslist;
+package com.wasp.songapp.views.favoritessongslist;
 
 import com.wasp.songapp.models.Song;
 
+
 import java.util.List;
 
-public interface MySongsListContracts {
+public interface FavoriteSongsListContracts {
+
     interface View {
 
-        void setPresenter(MySongsListContracts.Presenter presenter);
+        void setPresenter(FavoriteSongsListContracts.Presenter presenter);
 
         void showSongDetails(Song song);
 
@@ -19,16 +21,12 @@ public interface MySongsListContracts {
 
         void showAllSongs(List<Song> allSongs);
 
-        void showDialogForDeletion(Song songToDelete);
-
-        void hideDeletionDialog();
-
         void showMessage(String message);
     }
 
     interface Presenter {
 
-        void subscribe(MySongsListContracts.View view);
+        void subscribe(FavoriteSongsListContracts.View view);
 
         void songIsSelected(Song song);
 
@@ -36,13 +34,6 @@ public interface MySongsListContracts {
 
         void presentSongsToView(List<Song> allSongs, String message);
 
-        void filterSongsWith(String searchQuery);
-
-        void songForDeletionIsSelected(Song songToDelete);
-
-        void getActionOnCancelledDeletion();
-
-        void getActionOnConfirmedDeletion(Song songToDelete);
     }
 
     interface Navigator {
