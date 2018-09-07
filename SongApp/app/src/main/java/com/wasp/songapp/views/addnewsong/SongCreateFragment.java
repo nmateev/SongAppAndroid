@@ -6,10 +6,14 @@ import android.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.AlphaAnimation;
 import android.widget.EditText;
+import android.widget.ProgressBar;
+import android.widget.Toast;
 
 import com.wasp.songapp.R;
 import com.wasp.songapp.models.Song;
+import com.wasp.songapp.utils.Constants;
 
 import javax.inject.Inject;
 
@@ -17,8 +21,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class SongCreateFragment extends Fragment
-implements SongCreateContracts.View{
+public class SongCreateFragment extends Fragment implements SongCreateContracts.View {
 
     private SongCreateContracts.Presenter mPresenter;
 
@@ -34,7 +37,8 @@ implements SongCreateContracts.View{
     @BindView(R.id.et_new_song_image_url)
     EditText mNewSongImage;
 
-
+    @BindView(R.id.prb_load_bar_on_add_song)
+    ProgressBar mProgressBarView;
 
     private SongCreateContracts.Navigator mNavigator;
 
@@ -65,13 +69,14 @@ implements SongCreateContracts.View{
     }
 
     @OnClick(R.id.btn_save)
-    public void onSuperheroSaveClicked() {
+    public void onSongAddButtonClick(View view) {
         String newTitle = mNewSongTitle.getText().toString();
         String newAuthorName = mNewAuthorName.getText().toString();
-        String newSongDuration=mNewSongDuration.getText().toString();
+        String newSongDuration = mNewSongDuration.getText().toString();
         String newImageUrl = mNewSongImage.getText().toString();
 
-        Song newSong = new Song(newTitle,newAuthorName,newSongDuration, newImageUrl);
+        Song newSong = new Song(newTitle, newAuthorName, newSongDuration, newImageUrl);
+        view.startAnimation(new AlphaAnimation(Constants.FROM_ALPHA_ANIMATION, Constants.TO_ALPHA_ANIMATION));
         mPresenter.save(newSong);
     }
 
@@ -86,18 +91,29 @@ implements SongCreateContracts.View{
     }
 
     @Override
-    public void showError(Throwable throwable) {
-
+    public void showError(Throwable error) {
+        String errorMessage = Constants.ERROR_MESSAGE + error.getMessage();
+        Toast
+                .makeText(getContext(), errorMessage, Toast.LENGTH_LONG)
+                .show();
     }
 
     @Override
     public void hideLoading() {
-
+        mProgressBarView.setVisibility(View.INVISIBLE);
     }
 
     @Override
     public void showLoading() {
 
+        mProgressBarView.setVisibility(View.VISIBLE);
+    }
+
+    @Override
+    public void showMessage(String message) {
+        Toast
+                .makeText(getContext(), message, Toast.LENGTH_LONG)
+                .show();
     }
 
     public void setNavigator(SongCreateContracts.Navigator navigator) {

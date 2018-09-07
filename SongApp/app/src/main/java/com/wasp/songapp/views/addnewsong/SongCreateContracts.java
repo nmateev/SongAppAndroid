@@ -9,11 +9,13 @@ public interface SongCreateContracts {
 
         void navigateToHome();
 
-        void showError(Throwable throwable);
+        void showError(Throwable error);
 
         void hideLoading();
 
         void showLoading();
+
+        void showMessage(String message);
     }
 
     interface Presenter {

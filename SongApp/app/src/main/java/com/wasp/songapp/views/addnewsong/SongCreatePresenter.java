@@ -3,6 +3,7 @@ package com.wasp.songapp.views.addnewsong;
 import com.wasp.songapp.async.base.SchedulerProvider;
 import com.wasp.songapp.models.Song;
 import com.wasp.songapp.services.base.SongsService;
+import com.wasp.songapp.utils.Constants;
 
 import javax.inject.Inject;
 
@@ -33,6 +34,7 @@ public class SongCreatePresenter implements SongCreateContracts.Presenter {
 
     @Override
     public void save(Song song) {
+
         mView.showLoading();
         Disposable disposable = Observable
                 .create((ObservableOnSubscribe<Song>) emitter -> {
@@ -42,9 +44,11 @@ public class SongCreatePresenter implements SongCreateContracts.Presenter {
                 })
                 .subscribeOn(mSchedulerProvider.backgroundThread())
                 .observeOn(mSchedulerProvider.uiThread())
-                .doOnEach(x -> mView.hideLoading())
-                .doOnError(mView::showError)
-                .subscribe(s -> mView.navigateToHome());
+                .doFinally(mView::hideLoading)
+                .subscribe(s -> {
+                    mView.showMessage(Constants.ADD_OF_SONG_SUCCESS_MESSAGE);
+                    mView.navigateToHome();
+                }, error->mView.showError(error));
     }
 
 }

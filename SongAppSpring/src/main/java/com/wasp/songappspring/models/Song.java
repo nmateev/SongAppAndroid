@@ -7,8 +7,7 @@ import javax.validation.constraints.Size;
 public class Song {
     //fields
 
-    @NotNull
-    @Min(value = 1)
+
     public int id;
 
     @NotNull
@@ -28,7 +27,7 @@ public class Song {
     public int playsCount;
 
     @NotNull
-    @Size(min = 5, max = 1000)
+    @Size(min = 5, max = 350)
     public String imageUrl;
 
 

@@ -3,23 +3,30 @@ package com.wasp.songapp.services;
 import com.wasp.songapp.models.Song;
 import com.wasp.songapp.repositories.base.Repository;
 import com.wasp.songapp.services.base.SongsService;
+import com.wasp.songapp.utils.Constants;
+import com.wasp.songapp.utils.validators.base.Validator;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class HttpSongsService implements SongsService {
 
     private final Repository<Song> mSongsRepository;
+    private final Validator<Song> mSongValidator;
 
-    public HttpSongsService(Repository<Song> songsRepository) {
+    public HttpSongsService(Repository<Song> songsRepository, Validator<Song> songValidator) {
         mSongsRepository = songsRepository;
+        mSongValidator = songValidator;
     }
 
 
     @Override
     public void addSong(Song newSong) throws Exception {
+        boolean isSongValid = mSongValidator.isItemValid(newSong);
+        if(!isSongValid){
+            throw new Exception(Constants.ADD_OF_SONG_FAIL_MESSAGE);
+        }
         mSongsRepository.add(newSong);
     }
 
