@@ -32,7 +32,7 @@ public class SongValidator implements Validator<Song> {
     }
 
     private boolean isImageUrlValid(Song song) {
-        return song.getImageUrl().length() >= Constants.MIN_SONG_FIELD_LENGTH &&
-                song.getImageUrl().length() <= Constants.MAX_SONG_FIELD_LENGTH;
+        return song.getImageUrl().length() >= Constants.MIN_SONG_IMAGE_URL_LENGTH &&
+                song.getImageUrl().length() <= Constants.MAX_SONG_IMAGE_URL_;
     }
 }
