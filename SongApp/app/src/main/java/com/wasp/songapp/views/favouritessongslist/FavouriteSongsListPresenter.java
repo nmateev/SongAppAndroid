@@ -1,4 +1,4 @@
-package com.wasp.songapp.views.favoritessongslist;
+package com.wasp.songapp.views.favouritessongslist;
 
 import com.wasp.songapp.async.base.SchedulerProvider;
 import com.wasp.songapp.models.Song;
@@ -13,14 +13,14 @@ import io.reactivex.Observable;
 import io.reactivex.ObservableOnSubscribe;
 import io.reactivex.disposables.Disposable;
 
-public class FavoriteSongsListPresenter implements FavoriteSongsListContracts.Presenter {
+public class FavouriteSongsListPresenter implements FavouriteSongsListContracts.Presenter {
 
-    private FavoriteSongsListContracts.View mView;
+    private FavouriteSongsListContracts.View mView;
     private final SongsService mSongsService;
     private final SchedulerProvider mSchedulerProvider;
 
     @Inject
-    FavoriteSongsListPresenter(SongsService songsService, SchedulerProvider schedulerProvider) {
+    FavouriteSongsListPresenter(SongsService songsService, SchedulerProvider schedulerProvider) {
 
         mSongsService = songsService;
         mSchedulerProvider = schedulerProvider;
@@ -29,7 +29,7 @@ public class FavoriteSongsListPresenter implements FavoriteSongsListContracts.Pr
 
 
     @Override
-    public void subscribe(FavoriteSongsListContracts.View view) {
+    public void subscribe(FavouriteSongsListContracts.View view) {
         mView = view;
     }
 

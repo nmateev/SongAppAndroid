@@ -1,15 +1,15 @@
-package com.wasp.songapp.views.favoritessongslist;
+package com.wasp.songapp.views.favouritessongslist;
 
 import com.wasp.songapp.models.Song;
 
 
 import java.util.List;
 
-public interface FavoriteSongsListContracts {
+public interface FavouriteSongsListContracts {
 
     interface View {
 
-        void setPresenter(FavoriteSongsListContracts.Presenter presenter);
+        void setPresenter(FavouriteSongsListContracts.Presenter presenter);
 
         void showSongDetails(Song song);
 
@@ -26,7 +26,7 @@ public interface FavoriteSongsListContracts {
 
     interface Presenter {
 
-        void subscribe(FavoriteSongsListContracts.View view);
+        void subscribe(FavouriteSongsListContracts.View view);
 
         void songIsSelected(Song song);
 
@@ -37,6 +37,7 @@ public interface FavoriteSongsListContracts {
     }
 
     interface Navigator {
+
         void navigateToSongDetailsWith(Song song);
     }
 }

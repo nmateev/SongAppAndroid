@@ -1,4 +1,4 @@
-package com.wasp.songapp.views.favoritessongslist;
+package com.wasp.songapp.views.favouritessongslist;
 
 
 import android.app.Fragment;
@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.AlphaAnimation;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.Toast;
@@ -25,7 +24,7 @@ import butterknife.ButterKnife;
 import butterknife.OnItemClick;
 
 
-public class FavoriteSongsListFragment extends Fragment implements FavoriteSongsListContracts.View{
+public class FavouriteSongsListFragment extends Fragment implements FavouriteSongsListContracts.View{
 
     @BindView(R.id.lv_favorite_songs_list_view)
     ListView mSongsListView;
@@ -36,14 +35,12 @@ public class FavoriteSongsListFragment extends Fragment implements FavoriteSongs
     @Inject
     SongsArrayAdapter mSongsArrayAdapter;
 
-
-    private AlphaAnimation mButtonClickAnimation;
-    private FavoriteSongsListContracts.Presenter mPresenter;
-    private FavoriteSongsListContracts.Navigator mNavigator;
+    private FavouriteSongsListContracts.Presenter mPresenter;
+    private FavouriteSongsListContracts.Navigator mNavigator;
 
 
     @Inject
-    public FavoriteSongsListFragment() {
+    public FavouriteSongsListFragment() {
         // Required empty public constructor
     }
 
@@ -51,7 +48,7 @@ public class FavoriteSongsListFragment extends Fragment implements FavoriteSongs
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_favorite_songs_list, container, false);
+        View view = inflater.inflate(R.layout.fragment_favourite_songs_list, container, false);
         ButterKnife.bind(this, view);
 
         mSongsListView.setAdapter(mSongsArrayAdapter);
@@ -116,11 +113,11 @@ public class FavoriteSongsListFragment extends Fragment implements FavoriteSongs
     }
 
     @Override
-    public void setPresenter(FavoriteSongsListContracts.Presenter presenter) {
+    public void setPresenter(FavouriteSongsListContracts.Presenter presenter) {
         mPresenter = presenter;
     }
 
-    public void setNavigator(FavoriteSongsListContracts.Navigator navigator) {
+    public void setNavigator(FavouriteSongsListContracts.Navigator navigator) {
         mNavigator = navigator;
     }
 }

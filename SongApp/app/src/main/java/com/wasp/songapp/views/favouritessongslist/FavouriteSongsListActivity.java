@@ -1,4 +1,4 @@
-package com.wasp.songapp.views.favoritessongslist;
+package com.wasp.songapp.views.favouritessongslist;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -12,28 +12,29 @@ import javax.inject.Inject;
 
 import butterknife.ButterKnife;
 
-public class FavoriteSongsListActivity extends BaseDrawerActivity implements FavoriteSongsListContracts.Navigator {
+public class FavouriteSongsListActivity extends BaseDrawerActivity implements FavouriteSongsListContracts.Navigator {
     public static final int DRAWER_IDENTIFIER = 315;
-    @Inject
-    FavoriteSongsListFragment mFavoriteSongsListFragment;
 
     @Inject
-    FavoriteSongsListPresenter FavoriteSongsListPresenter;
+    FavouriteSongsListFragment mFavouriteSongsListFragment;
+
+    @Inject
+    FavouriteSongsListPresenter mFavouriteSongsListPresenter;
 
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_favorite_songs_list);
+        setContentView(R.layout.activity_favourite_songs_list);
         ButterKnife.bind(this);
 
-        mFavoriteSongsListFragment.setNavigator(this);
-        mFavoriteSongsListFragment.setPresenter(FavoriteSongsListPresenter);
+        mFavouriteSongsListFragment.setNavigator(this);
+        mFavouriteSongsListFragment.setPresenter(mFavouriteSongsListPresenter);
 
         getFragmentManager()
                 .beginTransaction()
-                .replace(R.id.fr_favorite_songs_list_fragment, mFavoriteSongsListFragment)
+                .replace(R.id.fr_favourite_songs_list_fragment, mFavouriteSongsListFragment)
                 .commit();
     }
 
@@ -49,5 +50,11 @@ public class FavoriteSongsListActivity extends BaseDrawerActivity implements Fav
     @Override
     protected long getIdentifier() {
         return DRAWER_IDENTIFIER;
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        finish();
     }
 }

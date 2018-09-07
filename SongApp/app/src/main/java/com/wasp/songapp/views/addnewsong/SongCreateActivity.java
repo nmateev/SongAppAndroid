@@ -45,6 +45,11 @@ public class SongCreateActivity extends BaseDrawerActivity implements SongCreate
         startActivity(intent);
         finish();
     }
+    @Override
+    protected void onStop() {
+        super.onStop();
+        finish();
+    }
 }
 
 

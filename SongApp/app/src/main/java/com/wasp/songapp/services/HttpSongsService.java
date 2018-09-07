@@ -9,10 +9,10 @@ import com.wasp.songapp.utils.validators.base.Validator;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class HttpSongsService implements SongsService {
 
-    private static final int MIN_SONG_PLAYS_COUNT_TO_BE_FAVORITE = 5;
     private final Repository<Song> mSongsRepository;
     private final Validator<Song> mSongValidator;
 
@@ -25,7 +25,7 @@ public class HttpSongsService implements SongsService {
     @Override
     public void addSong(Song newSong) throws Exception {
         boolean isSongValid = mSongValidator.isItemValid(newSong);
-        if(!isSongValid){
+        if (!isSongValid) {
             throw new Exception(Constants.ADD_OF_SONG_FAIL_MESSAGE);
         }
         mSongsRepository.add(newSong);
@@ -76,16 +76,10 @@ public class HttpSongsService implements SongsService {
     @Override
     public List<Song> getFavoriteSongs() throws IOException {
 
-        List<Song> allSongs = getAllSongs();
-        List<Song> favoriteSongs = new ArrayList<>();
-
-        allSongs
+        return getAllSongs()
                 .stream()
-                .filter(song -> song.getPlaysCount()>=MIN_SONG_PLAYS_COUNT_TO_BE_FAVORITE)
-                .forEach(favoriteSongs::add);
-
-
-        return favoriteSongs;
+                .filter(song -> song.getPlaysCount() >= Constants.MIN_SONG_PLAYS_COUNT_TO_BE_FAVORITE)
+                .collect(Collectors.toList());
 
     }
 }

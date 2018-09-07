@@ -54,4 +54,5 @@ public class MySongsListActivity extends BaseDrawerActivity implements MySongsLi
     protected long getIdentifier() {
         return DRAWER_IDENTIFIER;
     }
+
 }
