@@ -9,9 +9,11 @@ import com.mikepenz.materialdrawer.DrawerBuilder;
 import com.mikepenz.materialdrawer.model.DividerDrawerItem;
 import com.mikepenz.materialdrawer.model.PrimaryDrawerItem;
 import com.mikepenz.materialdrawer.model.SecondaryDrawerItem;
+import com.mikepenz.materialdrawer.model.SecondaryToggleDrawerItem;
 import com.mikepenz.materialdrawer.model.interfaces.IDrawerItem;
 import com.wasp.songapp.R;
 import com.wasp.songapp.views.addnewsong.SongCreateActivity;
+import com.wasp.songapp.views.favoritessongslist.FavoriteSongsListActivity;
 import com.wasp.songapp.views.mysongslist.MySongsListActivity;
 
 import butterknife.BindView;
@@ -21,6 +23,7 @@ public abstract class BaseDrawerActivity extends DaggerAppCompatActivity {
 
     private static final String MY_SONGS_DRAWER_NAME = "My songs";
     private static final String ADD_NEW_SONG_DRAWER_NAME = "Add new song";
+    private static final String FAVORITE_SONGS_DRAWER_NAME = "Favorite songs";
 
     @BindView(R.id.tb_drawer_toolbar)
     Toolbar mToolbar;
@@ -37,6 +40,9 @@ public abstract class BaseDrawerActivity extends DaggerAppCompatActivity {
         SecondaryDrawerItem addNewSongItem = new SecondaryDrawerItem()
                 .withIdentifier(SongCreateActivity.DRAWER_IDENTIFIER)
                 .withName(ADD_NEW_SONG_DRAWER_NAME);
+        SecondaryDrawerItem favoriteSongsListItem=new SecondaryDrawerItem()
+                .withIdentifier(FavoriteSongsListActivity.DRAWER_IDENTIFIER)
+                .withName(FAVORITE_SONGS_DRAWER_NAME);
 
         Drawer drawer = new DrawerBuilder()
                 .withActivity(this)
@@ -47,7 +53,9 @@ public abstract class BaseDrawerActivity extends DaggerAppCompatActivity {
                         new DividerDrawerItem(),
                         addNewSongItem
                                 .withIcon(R.drawable.draweraddsongicon),
-                        new DividerDrawerItem()
+                        new DividerDrawerItem(),
+                        favoriteSongsListItem
+                        .withIcon(R.drawable.favoritesongsicon)
                 )
                 .withOnDrawerItemClickListener((view, position, drawerItem) -> {
                     long identifier = drawerItem.getIdentifier();
@@ -60,7 +68,6 @@ public abstract class BaseDrawerActivity extends DaggerAppCompatActivity {
                     if (intent == null) {
                         return false;
                     }
-
                     startActivity(intent);
                     return true;
                 })
@@ -70,10 +77,19 @@ public abstract class BaseDrawerActivity extends DaggerAppCompatActivity {
 
     private Intent getNextIntent(long identifier) {
         if (identifier == MySongsListActivity.DRAWER_IDENTIFIER) {
-            return new Intent(this, MySongsListActivity.class);
+            Intent intent=new Intent(this, MySongsListActivity.class);
+            this.finish();
+            return intent;
         } else if (identifier == SongCreateActivity.DRAWER_IDENTIFIER) {
-            return new Intent(this, SongCreateActivity.class);
-        } else {
+            Intent intent=new Intent(this, SongCreateActivity.class);
+            this.finish();
+            return intent;
+        } else if(identifier==FavoriteSongsListActivity.DRAWER_IDENTIFIER){
+            Intent intent=new Intent(this, FavoriteSongsListActivity.class);
+            this.finish();
+            return intent;
+        }
+        else {
             return null;
         }
     }

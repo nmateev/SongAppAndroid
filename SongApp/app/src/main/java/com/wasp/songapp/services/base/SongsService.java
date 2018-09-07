@@ -19,4 +19,6 @@ public interface SongsService {
 
     List<Song> getFilteredSongs(String pattern) throws IOException;
 
+    List<Song> getFavoriteSongs()throws IOException;
+
 }

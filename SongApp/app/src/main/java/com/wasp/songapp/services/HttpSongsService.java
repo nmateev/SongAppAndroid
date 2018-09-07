@@ -12,6 +12,7 @@ import java.util.List;
 
 public class HttpSongsService implements SongsService {
 
+    private static final int MIN_SONG_PLAYS_COUNT_TO_BE_FAVORITE = 5;
     private final Repository<Song> mSongsRepository;
     private final Validator<Song> mSongValidator;
 
@@ -69,6 +70,22 @@ public class HttpSongsService implements SongsService {
                 .forEach(filteredSongs::add);
 
         return filteredSongs;
+
+    }
+
+    @Override
+    public List<Song> getFavoriteSongs() throws IOException {
+
+        List<Song> allSongs = getAllSongs();
+        List<Song> favoriteSongs = new ArrayList<>();
+
+        allSongs
+                .stream()
+                .filter(song -> song.getPlaysCount()>=MIN_SONG_PLAYS_COUNT_TO_BE_FAVORITE)
+                .forEach(favoriteSongs::add);
+
+
+        return favoriteSongs;
 
     }
 }

@@ -2,6 +2,7 @@ package com.wasp.songapp.diconfig;
 
 import com.wasp.songapp.views.addnewsong.SongCreateActivity;
 import com.wasp.songapp.views.applicationlaunch.AppLaunchActivity;
+import com.wasp.songapp.views.favoritessongslist.FavoriteSongsListActivity;
 import com.wasp.songapp.views.mysongslist.MySongsListActivity;
 import com.wasp.songapp.views.songdetails.SongDetailsActivity;
 
@@ -26,4 +27,8 @@ public abstract class ActivityBindingModule {
     @ContributesAndroidInjector(modules = SongCreateModule.class)
     abstract SongCreateActivity songCreateActivity();
 
+
+    @ActivityScoped
+    @ContributesAndroidInjector(modules = FavoriteSongsListModule.class)
+    abstract FavoriteSongsListActivity favoriteSongsListActivity();
 }
