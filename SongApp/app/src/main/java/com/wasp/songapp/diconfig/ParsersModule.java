@@ -10,7 +10,7 @@ import dagger.Provides;
 @Module
 public class ParsersModule {
     @Provides
-    public JsonParser<Song> superheroJsonParser() {
+    public JsonParser<Song> songsJsonParser() {
         return new GsonJsonParser<>(Song.class, Song[].class);
     }
 }

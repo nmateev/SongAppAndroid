@@ -11,16 +11,16 @@ import okhttp3.RequestBody;
 import okhttp3.Response;
 
 public class OkHttpHttpRequester implements HttpRequester {
-
+    private final OkHttpClient client;
 
     public OkHttpHttpRequester() {
 
+        client = new OkHttpClient();
     }
 
     @Override
     public String get(String url) throws IOException {
 
-        OkHttpClient client = new OkHttpClient();
         Request request = new Request.Builder()
                 .get()
                 .url(url)
@@ -36,8 +36,6 @@ public class OkHttpHttpRequester implements HttpRequester {
 
     @Override
     public void post(String url, String bodyString) throws IOException {
-
-        OkHttpClient client = new OkHttpClient();
 
         RequestBody body = RequestBody.create(
                 MediaType.parse("application/json"),
@@ -56,7 +54,7 @@ public class OkHttpHttpRequester implements HttpRequester {
 
     @Override
     public void delete(String url, int id) throws IOException {
-        OkHttpClient client = new OkHttpClient();
+
         Request request = new Request.Builder()
                 .delete()
                 .url(url)
@@ -69,9 +67,8 @@ public class OkHttpHttpRequester implements HttpRequester {
     }
 
     @Override
-    public String update(String url,String body , int id) throws IOException {
+    public String update(String url, String body, int id) throws IOException {
 
-        OkHttpClient client = new OkHttpClient();
         RequestBody requestBody = RequestBody.create(
                 MediaType.parse("application/json"),
                 body);

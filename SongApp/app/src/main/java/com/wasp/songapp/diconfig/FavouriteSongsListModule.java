@@ -7,6 +7,7 @@ import com.wasp.songapp.views.favouritessongslist.FavouriteSongsListPresenter;
 import dagger.Binds;
 import dagger.Module;
 import dagger.android.ContributesAndroidInjector;
+
 @Module
 public abstract class FavouriteSongsListModule {
     @FragmentScoped

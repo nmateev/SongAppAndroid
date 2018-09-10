@@ -41,7 +41,7 @@ public class FavouriteSongsListPresenter implements FavouriteSongsListContracts.
 
         Disposable observable = Observable
                 .create((ObservableOnSubscribe<List<Song>>) emitter -> {
-                    List<Song> songs = mSongsService.getFavoriteSongs();
+                    List<Song> songs = mSongsService.getFavouriteSongs();
                     emitter.onNext(songs);
                     emitter.onComplete();
                 })

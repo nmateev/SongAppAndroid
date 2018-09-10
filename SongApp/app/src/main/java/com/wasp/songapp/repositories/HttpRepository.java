@@ -44,17 +44,17 @@ public class HttpRepository<T> implements Repository<T> {
 
         String requestBody = mJsonParser.toJson(item);
 
-        mHttpRequester.update(updateServerUrl,requestBody, id);
+        String responseBody = mHttpRequester.update(updateServerUrl, requestBody, id);
 
-        return getById(id);
+
+        return mJsonParser.fromJson(responseBody);
 
     }
 
     @Override
     public T getById(int id) throws IOException {
 
-        String itemJson = null;
-        itemJson = mHttpRequester.get(mServerUrl + "/" + id);
+        String itemJson = mHttpRequester.get(mServerUrl + "/" + id);
         return mJsonParser.fromJson(itemJson);
     }
 
@@ -62,8 +62,7 @@ public class HttpRepository<T> implements Repository<T> {
     public List<T> getAll() throws IOException {
 
 
-        String itemsJson = null;
-        itemsJson = mHttpRequester.get(mServerUrl + "/get");
+        String itemsJson = mHttpRequester.get(mServerUrl + "/get");
         return mJsonParser.fromJsonArray(itemsJson);
 
     }

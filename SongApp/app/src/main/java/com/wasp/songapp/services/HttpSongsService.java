@@ -74,7 +74,7 @@ public class HttpSongsService implements SongsService {
     }
 
     @Override
-    public List<Song> getFavoriteSongs() throws IOException {
+    public List<Song> getFavouriteSongs() throws IOException {
 
         return getAllSongs()
                 .stream()
