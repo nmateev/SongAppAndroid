@@ -48,6 +48,12 @@ public class AppLaunchFragment extends Fragment implements AppLaunchContracts.Vi
     }
 
     @Override
+    public void onPause() {
+        super.onPause();
+        mPresenter.unsubscribe();
+    }
+
+    @Override
     public void setPresenter(AppLaunchContracts.Presenter presenter) {
         mPresenter = presenter;
     }

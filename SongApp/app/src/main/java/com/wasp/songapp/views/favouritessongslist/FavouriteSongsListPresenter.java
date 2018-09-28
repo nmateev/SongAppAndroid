@@ -35,6 +35,11 @@ public class FavouriteSongsListPresenter implements FavouriteSongsListContracts.
 
 
     @Override
+    public void unsubscribe() {
+        mView = null;
+    }
+
+    @Override
     public void showSongsList() {
 
         mView.showProgressBarLoading();

@@ -1,14 +1,12 @@
 package com.wasp.songapp.views.mysongslist;
 
 
-import android.app.AlertDialog;
 import android.app.Fragment;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.AlphaAnimation;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.ProgressBar;
@@ -43,9 +41,7 @@ public class MySongsListFragment extends Fragment implements MySongsListContract
     @Inject
     SongsArrayAdapter mSongsArrayAdapter;
 
-    private Button mPositiveDialogButton;
-    private Button mNegativeDialogButton;
-    private AlertDialog mDeletionDialog;
+    private DeletionDialog mDeletionDialog;
     private AlphaAnimation mButtonClickAnimation;
     private MySongsListContracts.Presenter mPresenter;
     private MySongsListContracts.Navigator mNavigator;
@@ -75,6 +71,11 @@ public class MySongsListFragment extends Fragment implements MySongsListContract
         mPresenter.showSongsList();
     }
 
+    @Override
+    public void onPause() {
+        super.onPause();
+        mPresenter.unsubscribe();
+    }
 
     @Override
     public void showAllSongs(List<Song> allSongs) {
@@ -88,15 +89,14 @@ public class MySongsListFragment extends Fragment implements MySongsListContract
     public void showDialogForDeletion(Song songToDelete) {
 
         setupDeletionDialog();
-
         mDeletionDialog.show();
 
-        mPositiveDialogButton
+        mDeletionDialog.mPositiveDialogButton
                 .setOnClickListener(view -> {
                     view.startAnimation(mButtonClickAnimation);
                     mPresenter.getActionOnConfirmedDeletion(songToDelete);
                 });
-        mNegativeDialogButton
+        mDeletionDialog.mNegativeDialogButton
                 .setOnClickListener(view -> {
                     view.startAnimation(mButtonClickAnimation);
                     mPresenter.getActionOnCancelledDeletion();
@@ -104,13 +104,7 @@ public class MySongsListFragment extends Fragment implements MySongsListContract
     }
 
     private void setupDeletionDialog() {
-        LayoutInflater inflater = LayoutInflater.from(this.getContext());
-        View dialogView = inflater.inflate(R.layout.song_deletion_dialog_layout, null);
-        AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(getContext());
-        dialogBuilder.setView(dialogView);
-        mDeletionDialog = dialogBuilder.create();
-        mPositiveDialogButton = dialogView.findViewById(R.id.btn_answer_yes);
-        mNegativeDialogButton = dialogView.findViewById(R.id.btn_answer_no);
+        mDeletionDialog = new DeletionDialog(this.getContext());
         mButtonClickAnimation = new AlphaAnimation(Constants.FROM_ALPHA_ANIMATION, Constants.TO_ALPHA_ANIMATION);
     }
 

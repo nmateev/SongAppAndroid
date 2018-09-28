@@ -28,6 +28,11 @@ public class AppLaunchPresenter implements AppLaunchContracts.Presenter {
     }
 
     @Override
+    public void unsubscribe() {
+        mView = null;
+    }
+
+    @Override
     public void loadAppLaunchPicture() {
 
         mView.showAppLaunchPicture();

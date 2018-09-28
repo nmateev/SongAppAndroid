@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class SongsServiceImpl implements SongsServiceBase {
+public class SongsServiceImpl implements SongsService {
     private SongsRepository songsRepository;
 
     @Autowired
@@ -38,7 +38,7 @@ public class SongsServiceImpl implements SongsServiceBase {
 
     @Override
     public List<Song> getSongs() {
-        return songsRepository.getSongs();
+        return songsRepository.getAllSongs();
     }
 
     private void setSongsRepository(SongsRepository songsRepository) {

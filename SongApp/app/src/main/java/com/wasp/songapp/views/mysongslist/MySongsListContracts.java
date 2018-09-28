@@ -30,6 +30,8 @@ public interface MySongsListContracts {
 
         void subscribe(MySongsListContracts.View view);
 
+        void unsubscribe();
+
         void songIsSelected(Song song);
 
         void showSongsList();

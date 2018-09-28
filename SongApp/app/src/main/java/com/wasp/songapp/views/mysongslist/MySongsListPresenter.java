@@ -9,9 +9,7 @@ import java.util.List;
 
 import javax.inject.Inject;
 
-import io.reactivex.Completable;
 import io.reactivex.Observable;
-import io.reactivex.ObservableEmitter;
 import io.reactivex.ObservableOnSubscribe;
 import io.reactivex.disposables.Disposable;
 
@@ -35,6 +33,10 @@ public class MySongsListPresenter implements MySongsListContracts.Presenter {
         mView = view;
     }
 
+    @Override
+    public void unsubscribe() {
+        mView = null;
+    }
 
     @Override
     public void showSongsList() {
@@ -88,7 +90,7 @@ public class MySongsListPresenter implements MySongsListContracts.Presenter {
     @Override
     public void getActionOnConfirmedDeletion(Song songToDelete) {
 
-        int idOfSongToDelete = songToDelete.getId();
+        int idOfSongToDelete = songToDelete.getSongId();
 
         Disposable observable = Observable
                 .create((ObservableOnSubscribe<Void>) emitter -> {
@@ -97,12 +99,13 @@ public class MySongsListPresenter implements MySongsListContracts.Presenter {
                 })
                 .subscribeOn(mSchedulerProvider.backgroundThread())
                 .observeOn(mSchedulerProvider.uiThread())
+                .doOnError(error -> mView.showError(error))
+                .doOnComplete(() -> {
+                    mView.showMessage(Constants.SUCCESSFUL_DELETION_OF_SONG);
+                    this.showSongsList();
+                })
                 .doFinally(mView::hideDeletionDialog)
-                .subscribe(aVoid -> { },
-                        error -> mView.showError(error),
-                        () -> { mView.showMessage(Constants.SUCCESSFUL_DELETION_OF_SONG);
-                        this.showSongsList();
-                });
+                .subscribe();
     }
 
     @Override

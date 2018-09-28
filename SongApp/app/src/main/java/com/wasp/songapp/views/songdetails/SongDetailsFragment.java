@@ -25,7 +25,6 @@ import butterknife.OnClick;
 
 public class SongDetailsFragment extends Fragment implements SongDetailsContracts.View {
 
-    //fields
     private SongDetailsContracts.Presenter mPresenter;
 
     @BindView(R.id.prb_load_view)
@@ -55,13 +54,12 @@ public class SongDetailsFragment extends Fragment implements SongDetailsContract
     @BindView(R.id.song_image)
     ImageView mSongImageView;
 
-    //constructor
     @Inject
     public SongDetailsFragment() {
         // Required empty constructor here
     }
 
-    //methods
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
@@ -76,6 +74,12 @@ public class SongDetailsFragment extends Fragment implements SongDetailsContract
         super.onResume();
         mPresenter.subscribe(this);
         mPresenter.loadSong();
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        mPresenter.unsubscribe();
     }
 
     @Override

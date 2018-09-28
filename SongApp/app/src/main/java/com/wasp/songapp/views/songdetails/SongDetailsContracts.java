@@ -21,6 +21,8 @@ public interface SongDetailsContracts {
     interface Presenter {
         void subscribe(View view);
 
+        void unsubscribe();
+
         void loadSong();
 
         void setSongId(int id);

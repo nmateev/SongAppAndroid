@@ -2,16 +2,11 @@ package com.wasp.songapp.views.mysongslist;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.widget.Toolbar;
-
 import com.wasp.songapp.R;
 import com.wasp.songapp.models.Song;
 import com.wasp.songapp.views.BaseDrawerActivity;
 import com.wasp.songapp.views.songdetails.SongDetailsActivity;
-
 import javax.inject.Inject;
-
-import butterknife.BindView;
 import butterknife.ButterKnife;
 
 

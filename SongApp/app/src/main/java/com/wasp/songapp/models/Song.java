@@ -8,13 +8,12 @@ public class Song implements Serializable, Comparable<Song> {
 
     private static final int INITIAL_PLAYS_COUNT = 0;
 
-
-    public int id;
-    public String songTitle;
-    public String authorName;
-    public String songDuration;
-    public int playsCount;
-    public String imageUrl;
+    private int songId;
+    private String songTitle;
+    private String authorName;
+    private String songDuration;
+    private int playsCount;
+    private String imageUrl;
 
     public Song() {
 
@@ -28,8 +27,8 @@ public class Song implements Serializable, Comparable<Song> {
         setImageUrl(imageUrl);
     }
 
-    public int getId() {
-        return id;
+    public int getSongId() {
+        return songId;
     }
 
     public String getSongTitle() {
@@ -73,8 +72,8 @@ public class Song implements Serializable, Comparable<Song> {
         this.imageUrl = imageUrl;
     }
 
-    private void setId(int id) {
-        this.id = id;
+    private void setSongId(int song_id) {
+        this.songId = song_id;
     }
 
     @Override

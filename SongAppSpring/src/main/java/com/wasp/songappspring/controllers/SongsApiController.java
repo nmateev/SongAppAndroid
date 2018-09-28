@@ -1,8 +1,7 @@
 package com.wasp.songappspring.controllers;
 
-import com.wasp.songappspring.controllers.base.SongsControllerBase;
 import com.wasp.songappspring.models.Song;
-import com.wasp.songappspring.services.SongsServiceBase;
+import com.wasp.songappspring.services.SongsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -11,47 +10,41 @@ import java.util.List;
 
 @RestController
 @RequestMapping(value = "/api/songs")
-public class SongsControllerImpl implements SongsControllerBase {
+public class SongsApiController{
 
-    private SongsServiceBase songsService;
+    private SongsService songsService;
 
     @Autowired
-    public SongsControllerImpl(SongsServiceBase songsService) {
+    public SongsApiController(SongsService songsService) {
         setSongsService(songsService);
     }
 
-    @RequestMapping(value = "/new", method = RequestMethod.POST)
-    @Override
+    @RequestMapping(method = RequestMethod.POST)
     public void addSong(@RequestBody @Valid Song newSong) {
         songsService.addSong(newSong);
     }
 
-    @RequestMapping(value = "/delete/{id}", method = RequestMethod.DELETE)
-    @Override
+    @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
     public void deleteSong(@PathVariable(value = "id") @Valid int id) {
         songsService.deleteSong(id);
     }
 
-    @RequestMapping(value = "/update/{id}", method = RequestMethod.PUT)
-
-    @Override
+    @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
     public Song updateSongPlayCounter(@RequestBody @Valid Song songToUpdate, @PathVariable(value = "id") @Valid int id) {
         return songsService.updateSongPlayCounter(songToUpdate,id);
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
-    @Override
     public Song getSongById(@PathVariable(value = "id") @Valid int id) {
         return songsService.getSongById(id);
     }
 
-    @RequestMapping(value = "/get", method = RequestMethod.GET)
-    @Override
+    @RequestMapping(method = RequestMethod.GET)
     public List<Song> getSongs() {
         return songsService.getSongs();
     }
 
-    private void setSongsService(SongsServiceBase songsService) {
+    private void setSongsService(SongsService songsService) {
         this.songsService = songsService;
     }
 }

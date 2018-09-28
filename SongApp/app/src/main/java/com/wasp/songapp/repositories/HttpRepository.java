@@ -1,7 +1,6 @@
 package com.wasp.songapp.repositories;
 
 import com.wasp.songapp.http.base.HttpRequester;
-import com.wasp.songapp.models.Song;
 import com.wasp.songapp.parsers.base.JsonParser;
 import com.wasp.songapp.repositories.base.Repository;
 
@@ -26,29 +25,24 @@ public class HttpRepository<T> implements Repository<T> {
     public void add(T item) throws IOException {
 
         String requestBody = mJsonParser.toJson(item);
-        String postServerUrl = mServerUrl + "/new";
-        mHttpRequester.post(postServerUrl, requestBody);
+        mHttpRequester.post(mServerUrl, requestBody);
     }
 
     @Override
     public void delete(int id) throws IOException {
-        String deleteServerUrl = mServerUrl + "/delete/" + id;
-
+        String deleteServerUrl = mServerUrl + "/" + id;
         mHttpRequester.delete(deleteServerUrl, id);
 
     }
 
     @Override
     public T update(T item, int id) throws IOException {
-        String updateServerUrl = mServerUrl + "/update/" + id;
-
+        String updateServerUrl = mServerUrl + "/" + id;
         String requestBody = mJsonParser.toJson(item);
 
         String responseBody = mHttpRequester.update(updateServerUrl, requestBody, id);
 
-
         return mJsonParser.fromJson(responseBody);
-
     }
 
     @Override
@@ -61,9 +55,7 @@ public class HttpRepository<T> implements Repository<T> {
     @Override
     public List<T> getAll() throws IOException {
 
-
-        String itemsJson = mHttpRequester.get(mServerUrl + "/get");
+        String itemsJson = mHttpRequester.get(mServerUrl);
         return mJsonParser.fromJsonArray(itemsJson);
-
     }
 }

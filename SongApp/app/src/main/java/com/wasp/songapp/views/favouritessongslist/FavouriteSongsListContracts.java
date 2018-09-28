@@ -28,6 +28,8 @@ public interface FavouriteSongsListContracts {
 
         void subscribe(FavouriteSongsListContracts.View view);
 
+        void unsubscribe();
+
         void songIsSelected(Song song);
 
         void showSongsList();

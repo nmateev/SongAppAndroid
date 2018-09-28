@@ -11,7 +11,7 @@ import javax.inject.Inject;
 import butterknife.ButterKnife;
 
 public class SongCreateActivity extends BaseDrawerActivity implements SongCreateContracts.Navigator {
-    //fields
+
     public static final long DRAWER_IDENTIFIER = 298;
     @Inject
     SongCreateFragment mSongCreateFragment;

@@ -15,6 +15,8 @@ public interface AppLaunchContracts {
 
         void subscribe(View view);
 
+        void unsubscribe();
+
         void loadAppLaunchPicture();
 
         void getNavigation();

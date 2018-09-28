@@ -63,6 +63,11 @@ public class FavouriteSongsListFragment extends Fragment implements FavouriteSon
         mPresenter.showSongsList();
     }
 
+    @Override
+    public void onPause() {
+        super.onPause();
+        mPresenter.unsubscribe();
+    }
 
     @Override
     public void showAllSongs(List<Song> allSongs) {

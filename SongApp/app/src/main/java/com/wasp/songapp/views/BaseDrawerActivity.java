@@ -79,6 +79,23 @@ public abstract class BaseDrawerActivity extends DaggerAppCompatActivity {
                 .build();
     }
 
+    public Toolbar getToolbar() {
+        return mToolbar;
+    }
+
+    protected abstract long getIdentifier();
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        setupDrawer();
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        mDrawer.closeDrawer();
+    }
 
     private Intent getNextIntent(long identifier) {
 
@@ -96,24 +113,6 @@ public abstract class BaseDrawerActivity extends DaggerAppCompatActivity {
         } else {
             return null;
         }
-    }
-
-    public Toolbar getToolbar() {
-        return mToolbar;
-    }
-
-    protected abstract long getIdentifier();
-
-    @Override
-    protected void onStart() {
-        super.onStart();
-        setupDrawer();
-    }
-
-    @Override
-    protected void onStop() {
-        super.onStop();
-        mDrawer.closeDrawer();
     }
 }
 

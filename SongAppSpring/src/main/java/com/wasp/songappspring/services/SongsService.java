@@ -4,7 +4,7 @@ import com.wasp.songappspring.models.Song;
 
 import java.util.List;
 
-public interface SongsServiceBase {
+public interface SongsService {
 
     void addSong(Song newSong);
 

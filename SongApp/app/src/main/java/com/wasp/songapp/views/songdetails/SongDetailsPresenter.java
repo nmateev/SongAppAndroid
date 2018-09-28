@@ -12,24 +12,29 @@ import io.reactivex.ObservableOnSubscribe;
 import io.reactivex.disposables.Disposable;
 
 public class SongDetailsPresenter implements SongDetailsContracts.Presenter {
-    //fields
+
     private final SongsService mSongsService;
     private final SchedulerProvider mSchedulerProvider;
     private SongDetailsContracts.View mView;
     private int mSongId;
     private Song mSelectedSong;
 
-    //constructor
+
     @Inject
     public SongDetailsPresenter(SongsService songsService, SchedulerProvider schedulerProvider) {
         mSongsService = songsService;
         mSchedulerProvider = schedulerProvider;
     }
 
-    //methods
+
     @Override
     public void subscribe(SongDetailsContracts.View view) {
         mView = view;
+    }
+
+    @Override
+    public void unsubscribe() {
+        mView = null;
     }
 
     @Override

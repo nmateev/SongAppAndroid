@@ -2,6 +2,7 @@ package com.wasp.songapp.views.songdetails;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.PersistableBundle;
 
 import com.wasp.songapp.R;
 import com.wasp.songapp.models.Song;
@@ -31,7 +32,7 @@ public class SongDetailsActivity extends BaseDrawerActivity {
         Intent intent = getIntent();
         Song song = (Song) intent.getSerializableExtra(SongDetailsActivity.SONG_EXTRA_KEY);
 
-        mSongDetailsPresenter.setSongId(song.getId());
+        mSongDetailsPresenter.setSongId(song.getSongId());
         mSongDetailsFragment.setPresenter(mSongDetailsPresenter);
 
         getFragmentManager()
@@ -45,5 +46,4 @@ public class SongDetailsActivity extends BaseDrawerActivity {
     protected long getIdentifier() {
         return DRAWER_IDENTIFIER;
     }
-
 }
